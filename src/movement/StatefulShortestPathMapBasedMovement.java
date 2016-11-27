@@ -6,6 +6,7 @@ package movement;
 
 import core.Coord;
 import core.Settings;
+import core.SimClock;
 import movement.map.DijkstraPathFinder;
 import movement.map.MapNode;
 import movement.map.PointsOfInterest;
@@ -108,9 +109,14 @@ public class StatefulShortestPathMapBasedMovement extends MapBasedMovement imple
 		switch ( state ) {
 			case LOC1: {
 				List<Tuple<State, Double>> loc1Probs = new ArrayList<>();
-				loc1Probs.add(new Tuple<State, Double>(State.LOC1, 10.0));
-				loc1Probs.add(new Tuple<State, Double>(State.LOC2, 50.0));
-				loc1Probs.add(new Tuple<State, Double>(State.LOC3, 40.0));
+				if(SimClock.getTime() < 400) {
+					loc1Probs.add(new Tuple<State, Double>(State.LOC1, 10.0));
+					loc1Probs.add(new Tuple<State, Double>(State.LOC2, 50.0));
+					loc1Probs.add(new Tuple<State, Double>(State.LOC3, 40.0));
+				} else {
+					loc1Probs.add(new Tuple<State, Double>(State.LOC1, 100.0));
+				}
+
 
 				Random rand = new Random();
 				int index = rand.nextInt(100);
@@ -128,16 +134,21 @@ public class StatefulShortestPathMapBasedMovement extends MapBasedMovement imple
 				return State.LOC2;
 			}
 			case LOC2: {
-				List<Tuple<State, Double>> loc1Probs = new ArrayList<>();
-				loc1Probs.add(new Tuple<State, Double>(State.LOC1, 40.0));
-				loc1Probs.add(new Tuple<State, Double>(State.LOC2, 10.0));
-				loc1Probs.add(new Tuple<State, Double>(State.LOC3, 50.0));
+				List<Tuple<State, Double>> loc2Probs = new ArrayList<>();
+				if(SimClock.getTime() < 400) {
+					loc2Probs.add(new Tuple<State, Double>(State.LOC1, 40.0));
+					loc2Probs.add(new Tuple<State, Double>(State.LOC2, 10.0));
+					loc2Probs.add(new Tuple<State, Double>(State.LOC3, 50.0));
+				} else {
+					loc2Probs.add(new Tuple<State, Double>(State.LOC1, 100.0));
+				}
+
 
 				Random rand = new Random();
 				int index = rand.nextInt(100);
 				int sum = 0;
 
-				for (Tuple<State, Double> t : loc1Probs) {
+				for (Tuple<State, Double> t : loc2Probs) {
 					sum += t.getValue();
 
 					if(sum >= index) {
@@ -149,16 +160,20 @@ public class StatefulShortestPathMapBasedMovement extends MapBasedMovement imple
 				return State.LOC2;
 			}
 			case LOC3: {
-				List<Tuple<State, Double>> loc1Probs = new ArrayList<>();
-				loc1Probs.add(new Tuple<State, Double>(State.LOC1, 50.0));
-				loc1Probs.add(new Tuple<State, Double>(State.LOC2, 20.0));
-				loc1Probs.add(new Tuple<State, Double>(State.LOC3, 30.0));
+				List<Tuple<State, Double>> loc3Probs = new ArrayList<>();
+				if(SimClock.getTime() < 400) {
+					loc3Probs.add(new Tuple<State, Double>(State.LOC1, 50.0));
+					loc3Probs.add(new Tuple<State, Double>(State.LOC2, 20.0));
+					loc3Probs.add(new Tuple<State, Double>(State.LOC3, 30.0));
+				} else {
+					loc3Probs.add(new Tuple<State, Double>(State.LOC1, 100.0));
+				}
 
 				Random rand = new Random();
 				int index = rand.nextInt(100);
 				int sum = 0;
 
-				for (Tuple<State, Double> t : loc1Probs) {
+				for (Tuple<State, Double> t : loc3Probs) {
 					sum += t.getValue();
 
 					if(sum >= index) {
@@ -180,7 +195,7 @@ public class StatefulShortestPathMapBasedMovement extends MapBasedMovement imple
 		minWaitTime = 0;
 
 		if(state == State.LOC3) {
-			maxWaitTime = 500;
+			maxWaitTime = 100;
 			minWaitTime = 0;
 		}
 	}
