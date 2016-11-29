@@ -6,7 +6,9 @@ import core.SettingsError;
 import movement.map.DijkstraPathFinder;
 import movement.map.MapNode;
 import movement.map.MapRoute;
+import util.Tuple;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
@@ -57,10 +59,6 @@ public class LocationBiasMapRouteMovement extends MapBasedMovement implements
      */
     private MapRoute route;
 
-    /**
-     * Prototype's reference to all routes read for the group
-     */
-    private LinkedList<MapNode> allLocationBias = new LinkedList<>();
 
     /**
      * Creates a new movement model based on a Settings object's settings.
@@ -87,8 +85,7 @@ public class LocationBiasMapRouteMovement extends MapBasedMovement implements
                         this.route.getNrofStops() + " stops");
             }
         }
-        this.allLocationBias = initiatePOIs();
-        System.out.println("Methode Call: " + initiatePOIs().size() + " allLocationBias: " + allLocationBias.size());
+
     }
 
     /**
@@ -123,11 +120,8 @@ public class LocationBiasMapRouteMovement extends MapBasedMovement implements
         Path p = new Path(generateSpeed());
         //MapNode to = route.nextStop();
 
-        MapNode to = new MapNode(new Coord(1, 1));
-        Random rn = new Random();
-        int ranDom = rn.nextInt(100);
-
-        System.out.println("Coordinate: " + allLocationBias.size());
+        MapNode to = getNextLocation();
+        System.out.println("Coordinates: " + to);
         List<MapNode> nodePath = pathFinder.getShortestPath(lastMapNode, to);
 
         // this assertion should never fire if the map is checked in read phase
@@ -179,46 +173,30 @@ public class LocationBiasMapRouteMovement extends MapBasedMovement implements
         return route.getStops();
     }
 
-
-    public LinkedList<MapNode> initiatePOIs() {
-
-        LinkedList<MapNode> listPoi = new LinkedList<>();
-
-        listPoi.add(new MapNode(new Coord(100, -100)));
-        listPoi.add(new MapNode(new Coord(600, 100)));
-        listPoi.add(new MapNode(new Coord(350, -533)));
-        //listPoi.add(new MapNode(new Coord(4, 4)));
-        //listPoi.add(new MapNode(new Coord(5, 5)));
-        //int[] probabilities = {25, 15, 35, 5, 20};
-        int[] probabilities = {10, 70, 20};
-        LinkedList<MapNode> finalPoiList = new LinkedList<MapNode>();
-
-        int poi = 0;
-        int probIndex = 0;
+    public String myTest (){ return "PassMethode";}
 
 
-        int start = 0;
-        int end = probabilities[probIndex];
+    public MapNode getNextLocation() {
+
+        List<Tuple<MapNode, Double>> loc1Probs = new ArrayList<>();
+        loc1Probs.add(new Tuple<MapNode, Double>(new MapNode(new Coord(100,100)), 10.0));
+        loc1Probs.add(new Tuple<MapNode, Double>(new MapNode(new Coord(350,533)), 10.0));
+        loc1Probs.add(new Tuple<MapNode, Double>(new MapNode(new Coord(600,100)), 80.0));
 
 
-        while (start <= end && start < 100 && poi < listPoi.size()) {
-            if (start == end) {
-                poi++;
-                probIndex++;
-                start = 0;
-                for (int x = 0; x < probIndex; x++) {
-                    start += probabilities[x];
-                }
-                end = start + probabilities[probIndex];
+        Random rand = new Random();
+        int index = rand.nextInt(100);
+        int sum = 0;
+
+        MapNode selectedNode  = new MapNode(new Coord(100,100));
+        for (Tuple<MapNode, Double> t : loc1Probs) {
+            sum += t.getValue();
+
+            if(sum >= index) {
+                selectedNode = t.getKey();
+                break;
             }
-
-            finalPoiList.add(new MapNode(new Coord(350, -533)));
-            start++;
-
-
         }
-
-
-        return finalPoiList;
+        return selectedNode;
     }
 }
