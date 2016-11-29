@@ -15,6 +15,7 @@ import java.util.Random;
 
 /**
  * Created by jimmy on 11/27/16.
+ * Updated Sael Bayona
  */
 public class LocationBiasMapRouteMovement extends MapBasedMovement implements
         SwitchableMovement {
