@@ -83,6 +83,7 @@ public class DijkstraPathFinder {
 
 		// always take the node with shortest distance
 		while ((node = unvisited.poll()) != null) {
+			System.out.println("unvisited: " + node.getLocation().toString());
 			if (node == to) {
 				break; // we found the destination -> no need to search further
 			}
@@ -94,13 +95,152 @@ public class DijkstraPathFinder {
 		// now we either have the path or such path wasn't available
 		if (node == to) { // found a path
 			path.add(0,to);
+			System.out.println("Getting path: " + to.getLocation().toString());
 			MapNode prev = prevNodes.get(to);
 			while (prev != from) {
+				System.out.println("Getting path: " + prev.getLocation().toString());
 				path.add(0, prev);	// always put previous node to beginning
 				prev = prevNodes.get(prev);
 			}
 
 			path.add(0, from); // finally put the source node to first node
+		}
+
+		return path;
+	}
+
+	public List<MapNode> getPathToDestination(MapNode from, MapNode to, List<MapNode> allNodes) {
+		List<MapNode> path = new LinkedList<MapNode>();
+
+		if (from.compareTo(to) == 0) { // source and destination are the same
+			path.add(from); // return a list containing only source node
+			return path;
+		}
+
+		for (MapNode destination : allNodes) {
+			if(destination.getLocation().toString().equals(to.getLocation().toString())){
+				System.out.println("Destination found: " + destination.getLocation().toString() + " neigbors " + destination.getNeighbors().size());
+				// this is our real destination
+				to = destination;
+				break;
+			}
+		}
+
+		boolean destinationFound = false;
+		boolean attemptRepeated = false;
+
+		MapNode currentNode = from;
+		List<MapNode> currentNodes = from.getNeighbors();
+		List<String> checkedCoordinates = new LinkedList<>();
+
+		int usedIndex = 0;
+		int neighborsIndex = 0;
+
+		while (!destinationFound) {
+			path.add(currentNode);
+
+//			System.out.println("Current node: " + currentNode.getLocation().toString() + " going to :  " + to.getLocation().toString());
+//			System.out.println("Current size: " + currentNodes.size() + " going to :  " + to.getLocation().toString());
+
+			if(to.getLocation().toString().equals(currentNode.getLocation().toString())) {
+				System.out.println("FOUND!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+				// We found the node
+				path.add(currentNode);
+				return path;
+			}
+
+			for (MapNode n : currentNodes) {
+				if(to.getLocation().toString().equals(currentNode.getLocation().toString())) {
+					System.out.println("FOUND!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+					// We found the node
+					path.add(n);
+					return path;
+				}
+			}
+
+			for (int i=0; i<currentNodes.size(); i++) {
+				for (MapNode n : currentNodes.get(i).getNeighbors()) {
+					if(to.getLocation().toString().equals(currentNode.getLocation().toString())) {
+						System.out.println("FOUND!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+						// We found the node
+						path.add(n);
+						return path;
+					}
+				}
+			}
+
+			// If we reach here, then not part of the current nodes
+			MapNode prevNode = new MapNode(currentNode.getLocation());
+
+			if(!attemptRepeated) {
+				for (int i=0; i<currentNodes.size(); i++) {
+					if(!checkedCoordinates.contains(currentNodes.get(i).getLocation().toString())) {
+						currentNode = currentNode.getNeighbors().get(i);
+						currentNodes = currentNode.getNeighbors();
+
+						checkedCoordinates.add(currentNode.getLocation().toString());
+						break;
+					}
+				}
+			} else {
+				for (int i=currentNodes.size()-1; i> -1; i--) {
+					if(!checkedCoordinates.contains(currentNodes.get(i).getLocation().toString())) {
+						currentNode = currentNode.getNeighbors().get(i);
+						currentNodes = currentNode.getNeighbors();
+
+						checkedCoordinates.add(currentNode.getLocation().toString());
+						break;
+					}
+				}
+			}
+
+			if(attemptRepeated) {
+
+				if(usedIndex == path.size()) {
+					System.out.println("GIVING UP... going to :  " + to.getLocation().toString());
+					return path;
+				}
+
+				attemptRepeated = false;
+				neighborsIndex ++;
+
+				if(path.get(usedIndex).getNeighbors().size() > neighborsIndex) {
+					currentNode = path.get(usedIndex).getNeighbors().get(neighborsIndex);
+					currentNodes = currentNode.getNeighbors();
+				} else {
+					usedIndex++;
+					neighborsIndex = 0;
+
+					if(usedIndex < path.size()-1) {
+						if(path.get(usedIndex).getNeighbors().size() == 0) {
+							while (usedIndex < path.size() - 1 && path.get(usedIndex).getNeighbors().size() == 0) {
+								usedIndex++;
+							}
+						}
+
+						if(usedIndex < path.size()-1 && path.get(usedIndex).getNeighbors().size() > 0) {
+							currentNode = path.get(usedIndex).getNeighbors().get(neighborsIndex);
+							currentNodes = currentNode.getNeighbors();
+						} else {
+							System.out.println("Giving up, final :  " + to.getLocation().toString());
+							path.add(to);
+							return path;
+						}
+					} else {
+						System.out.println("Giving up, final :  " + to.getLocation().toString());
+						path.add(to);
+						return path;
+					}
+				}
+			} else {
+				if(prevNode.getLocation().toString().equals(currentNode.getLocation().toString())) {
+					System.out.println("REPEAT!!!!!!!! going to :  " + to.getLocation().toString());
+					attemptRepeated = true;
+
+					checkedCoordinates = new LinkedList<>();
+				}
+			}
+
 		}
 
 		return path;

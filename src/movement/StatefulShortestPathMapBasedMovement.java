@@ -28,7 +28,7 @@ public class StatefulShortestPathMapBasedMovement extends MapBasedMovement imple
 	/** Points Of Interest handler */
 	private PointsOfInterest pois;
 
-	private State state = State.LOC1;
+	private State state = State.LectureHall;
 	//==========================================================================//
 
 	/**
@@ -40,6 +40,11 @@ public class StatefulShortestPathMapBasedMovement extends MapBasedMovement imple
 		this.pathFinder = new DijkstraPathFinder(getOkMapNodeTypes());
 		this.pois = new PointsOfInterest(getMap(), getOkMapNodeTypes(),
 				settings, rng);
+
+		List<MapNode> allNodes = getMap().getNodes();
+		for (int i=0; i<allNodes.size(); i++) {
+			System.out.println(i + "; " + SimClock.getTime() + "; " + allNodes.get(i).getLocation().toString());
+		};
 	}
 
 	/**
@@ -63,6 +68,7 @@ public class StatefulShortestPathMapBasedMovement extends MapBasedMovement imple
 		MapNode to = selectNextStateDestination(this.state);
 
 		List<MapNode> nodePath = pathFinder.getShortestPath(lastMapNode, to);
+		//List<MapNode> nodePath = pathFinder.getPathToDestination(lastMapNode, to, getMap().getNodes());
 
 		// this assertion should never fire if the map is checked in read phase
 		assert nodePath.size() > 0 : "No path from " + lastMapNode + " to " +
@@ -72,7 +78,7 @@ public class StatefulShortestPathMapBasedMovement extends MapBasedMovement imple
 			p.addWaypoint(node.getLocation());
 		}
 
-		lastMapNode = to;
+		lastMapNode = nodePath.get(nodePath.size()-1);
 
 		return p;
 	}
@@ -84,15 +90,28 @@ public class StatefulShortestPathMapBasedMovement extends MapBasedMovement imple
 
 	///////////////////////////////////////////////
 	public MapNode selectNextStateDestination(StatefulShortestPathMapBasedMovement.State state) {
-		if(state == StatefulShortestPathMapBasedMovement.State.LOC1) {
-			return new MapNode(new Coord(100,100));
-		} else if(state == StatefulShortestPathMapBasedMovement.State.LOC2) {
-			return new MapNode(new Coord(350,533));
-		} else if(state == StatefulShortestPathMapBasedMovement.State.LOC3) {
-			return new MapNode(new Coord(600,100));
+		List<MapNode> allNodes = getMap().getNodes();
+		MapNode tmpNode;
+
+
+		if(state == StatefulShortestPathMapBasedMovement.State.LectureHall) {
+			tmpNode = new MapNode(new Coord(1033.57,124.38));
+
+		} else if(state == StatefulShortestPathMapBasedMovement.State.MainHall) {
+			//return new MapNode(new Coord(841.74,41.77)); --> Enterance
+			tmpNode = new MapNode(new Coord(811.59,139.32));
+		} else if(state == StatefulShortestPathMapBasedMovement.State.Mesa) {
+			tmpNode = new MapNode(new Coord(581.09,171.69));
 		} else {
-			return new MapNode(new Coord(100,100));
+			tmpNode = new MapNode(new Coord(841.74,41.77));
 		}
+
+		for (MapNode destination : allNodes) {
+			if(destination.getLocation().toString().equals(tmpNode.getLocation().toString())){
+				return destination;
+			}
+		}
+		return tmpNode;
 	}
 
 	/**
@@ -107,14 +126,14 @@ public class StatefulShortestPathMapBasedMovement extends MapBasedMovement imple
 		// TODO: Add time as parameter
 		// TODO: Set wait time
 		switch ( state ) {
-			case LOC1: {
+			case LectureHall: {
 				List<Tuple<State, Double>> loc1Probs = new ArrayList<>();
 				if(SimClock.getTime() < 400) {
-					loc1Probs.add(new Tuple<State, Double>(State.LOC1, 10.0));
-					loc1Probs.add(new Tuple<State, Double>(State.LOC2, 50.0));
-					loc1Probs.add(new Tuple<State, Double>(State.LOC3, 40.0));
+					loc1Probs.add(new Tuple<State, Double>(State.LectureHall, 10.0));
+					loc1Probs.add(new Tuple<State, Double>(State.MainHall, 50.0));
+					loc1Probs.add(new Tuple<State, Double>(State.Mesa, 40.0));
 				} else {
-					loc1Probs.add(new Tuple<State, Double>(State.LOC1, 100.0));
+					loc1Probs.add(new Tuple<State, Double>(State.Mesa, 100.0));
 				}
 
 
@@ -131,16 +150,16 @@ public class StatefulShortestPathMapBasedMovement extends MapBasedMovement imple
 				}
 
 				// We shouldnt reach this point
-				return State.LOC2;
+				return State.MainHall;
 			}
-			case LOC2: {
+			case MainHall: {
 				List<Tuple<State, Double>> loc2Probs = new ArrayList<>();
 				if(SimClock.getTime() < 400) {
-					loc2Probs.add(new Tuple<State, Double>(State.LOC1, 40.0));
-					loc2Probs.add(new Tuple<State, Double>(State.LOC2, 10.0));
-					loc2Probs.add(new Tuple<State, Double>(State.LOC3, 50.0));
+					loc2Probs.add(new Tuple<State, Double>(State.LectureHall, 40.0));
+					loc2Probs.add(new Tuple<State, Double>(State.MainHall, 10.0));
+					loc2Probs.add(new Tuple<State, Double>(State.Mesa, 50.0));
 				} else {
-					loc2Probs.add(new Tuple<State, Double>(State.LOC1, 100.0));
+					loc2Probs.add(new Tuple<State, Double>(State.Mesa, 100.0));
 				}
 
 
@@ -157,16 +176,16 @@ public class StatefulShortestPathMapBasedMovement extends MapBasedMovement imple
 				}
 
 				// We shouldnt reach this point
-				return State.LOC2;
+				return State.MainHall;
 			}
-			case LOC3: {
+			case Mesa: {
 				List<Tuple<State, Double>> loc3Probs = new ArrayList<>();
 				if(SimClock.getTime() < 400) {
-					loc3Probs.add(new Tuple<State, Double>(State.LOC1, 50.0));
-					loc3Probs.add(new Tuple<State, Double>(State.LOC2, 20.0));
-					loc3Probs.add(new Tuple<State, Double>(State.LOC3, 30.0));
+					loc3Probs.add(new Tuple<State, Double>(State.LectureHall, 50.0));
+					loc3Probs.add(new Tuple<State, Double>(State.MainHall, 20.0));
+					loc3Probs.add(new Tuple<State, Double>(State.Mesa, 30.0));
 				} else {
-					loc3Probs.add(new Tuple<State, Double>(State.LOC1, 100.0));
+					loc3Probs.add(new Tuple<State, Double>(State.Mesa, 100.0));
 				}
 
 				Random rand = new Random();
@@ -182,7 +201,7 @@ public class StatefulShortestPathMapBasedMovement extends MapBasedMovement imple
 				}
 
 				// We shouldnt reach this point
-				return State.LOC2;
+				return State.MainHall;
 			}
 			default: {
 				throw new RuntimeException( "Invalid state." );
@@ -194,14 +213,14 @@ public class StatefulShortestPathMapBasedMovement extends MapBasedMovement imple
 		maxWaitTime = 0;
 		minWaitTime = 0;
 
-		if(state == State.LOC3) {
+		if(state == State.Mesa) {
 			maxWaitTime = 100;
 			minWaitTime = 0;
 		}
 	}
 
 	public static enum State {
-		LOC1, LOC2, LOC3
+		LectureHall, MainHall, Mesa
 	}
 	//==========================================================================//
 
