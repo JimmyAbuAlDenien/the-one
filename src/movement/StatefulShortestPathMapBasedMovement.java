@@ -60,9 +60,9 @@ public class StatefulShortestPathMapBasedMovement extends MapBasedMovement imple
 
 	@Override
 	public Path getPath() {
-		setWaitTime(this.state);
 		// Get new state
 		this.state = updateState(this.state);
+		setWaitTime(this.state);
 
 		Path p = new Path(generateSpeed());
 		MapNode to = selectNextStateDestination(this.state);
@@ -93,10 +93,8 @@ public class StatefulShortestPathMapBasedMovement extends MapBasedMovement imple
 		List<MapNode> allNodes = getMap().getNodes();
 		MapNode tmpNode;
 
-
 		if(state == StatefulShortestPathMapBasedMovement.State.LectureHall) {
 			tmpNode = new MapNode(new Coord(1033.57,124.38));
-
 		} else if(state == StatefulShortestPathMapBasedMovement.State.MainHall) {
 			//return new MapNode(new Coord(841.74,41.77)); --> Enterance
 			tmpNode = new MapNode(new Coord(811.59,139.32));
@@ -105,7 +103,7 @@ public class StatefulShortestPathMapBasedMovement extends MapBasedMovement imple
 		} else {
 			tmpNode = new MapNode(new Coord(841.74,41.77));
 		}
-
+		//tmpNode.getNeighbors()
 		for (MapNode destination : allNodes) {
 			if(destination.getLocation().toString().equals(tmpNode.getLocation().toString())){
 				return destination;
@@ -128,7 +126,7 @@ public class StatefulShortestPathMapBasedMovement extends MapBasedMovement imple
 		switch ( state ) {
 			case LectureHall: {
 				List<Tuple<State, Double>> loc1Probs = new ArrayList<>();
-				if(SimClock.getTime() < 400) {
+				if(SimClock.getTime() < 400 || SimClock.getTime() > 600) {
 					loc1Probs.add(new Tuple<State, Double>(State.LectureHall, 10.0));
 					loc1Probs.add(new Tuple<State, Double>(State.MainHall, 50.0));
 					loc1Probs.add(new Tuple<State, Double>(State.Mesa, 40.0));
@@ -154,7 +152,7 @@ public class StatefulShortestPathMapBasedMovement extends MapBasedMovement imple
 			}
 			case MainHall: {
 				List<Tuple<State, Double>> loc2Probs = new ArrayList<>();
-				if(SimClock.getTime() < 400) {
+				if(SimClock.getTime() < 400 || SimClock.getTime() > 600) {
 					loc2Probs.add(new Tuple<State, Double>(State.LectureHall, 40.0));
 					loc2Probs.add(new Tuple<State, Double>(State.MainHall, 10.0));
 					loc2Probs.add(new Tuple<State, Double>(State.Mesa, 50.0));
@@ -180,7 +178,7 @@ public class StatefulShortestPathMapBasedMovement extends MapBasedMovement imple
 			}
 			case Mesa: {
 				List<Tuple<State, Double>> loc3Probs = new ArrayList<>();
-				if(SimClock.getTime() < 400) {
+				if(SimClock.getTime() < 400 || SimClock.getTime() > 600) {
 					loc3Probs.add(new Tuple<State, Double>(State.LectureHall, 50.0));
 					loc3Probs.add(new Tuple<State, Double>(State.MainHall, 20.0));
 					loc3Probs.add(new Tuple<State, Double>(State.Mesa, 30.0));
@@ -214,8 +212,11 @@ public class StatefulShortestPathMapBasedMovement extends MapBasedMovement imple
 		minWaitTime = 0;
 
 		if(state == State.Mesa) {
-			maxWaitTime = 100;
-			minWaitTime = 0;
+			maxWaitTime = 200;
+			minWaitTime = 50;
+		} else if(state == State.LectureHall) {
+			maxWaitTime = 500;
+			minWaitTime = 300;
 		}
 	}
 

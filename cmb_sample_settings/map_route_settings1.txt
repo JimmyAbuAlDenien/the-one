@@ -1,7 +1,7 @@
 # Settings for map route based movement in a triangle.
 
 GUI.UnderlayImage.fileName = data/cluster/map.png
-GUI.UnderlayImage.offset = 0,-130
+GUI.UnderlayImage.offset = 10,-450
 GUI.UnderlayImage.scale = 1
 GUI.UnderlayImage.rotate = 0
 
@@ -18,33 +18,33 @@ myInterface.transmitRange = 0
 myInterface.transmitSpeed = 0
 
 # Groups
-Scenario.nrofHostGroups = 2
+Scenario.nrofHostGroups = 1
 
-Group1.groupID = M
-Group1.nrofHosts = 5
-Group1.nrofInterfaces = 1
-Group1.interface1 = myInterface
-Group1.movementModel = MapRouteMovement
-Group1.routeFile = data/cluster/students.wkt
-Group1.routeType = 1
-Group1.router = PassiveRouter
+#Group1.groupID = M
+#Group1.nrofHosts = 1
+#Group1.nrofInterfaces = 1
+#Group1.interface1 = myInterface
+#Group1.movementModel = StatefulShortestPathMapBasedMovement
+#Group1.routeFile = data/cluster/students.wkt
+#Group1.routeType = 1
+#Group1.router = PassiveRouter
 #Group1.waitTime = 0, 120
 
-Group2.groupID = B
-Group2.nrofHosts = 5
-Group2.nrofInterfaces = 1
-Group2.interface1 = myInterface
-Group2.movementModel = MapRouteMovement
-Group2.routeFile = data/cluster/bachelor.wkt
-Group2.routeType = 1
-Group2.router = PassiveRouter
+Group1.groupID = B
+Group1.nrofHosts = 50
+Group1.nrofInterfaces = 1
+Group1.interface1 = myInterface
+Group1.movementModel = StatefulShortestPathMapBasedMovement
+Group1.routeFile = data/cluster/new.wkt
+Group1.routeType = 1
+Group1.router = PassiveRouter
 #Group2.waitTime = 200, 300
 
 ## Map based movement -movement model specific settings
-MapBasedMovement.nrofMapFiles = 3
-MapBasedMovement.mapFile1 = data/cluster/students.wkt
-MapBasedMovement.mapFile2 = data/cluster/origin.wkt
-MapBasedMovement.mapFile3 = data/cluster/bachelor.wkt
+MapBasedMovement.nrofMapFiles = 2
+MapBasedMovement.mapFile1 = data/cluster/new.wkt
+MapBasedMovement.mapFile2 = data/cluster/origin1.wkt
+#MapBasedMovement.mapFile3 = data/cluster/bachelor.wkt
 
 # Reports
 Report.nrofReports = 1
