@@ -28,7 +28,8 @@ public class StatefulShortestPathMapBasedMovement extends MapBasedMovement imple
 	/** Points Of Interest handler */
 	private PointsOfInterest pois;
 
-	private State state = State.MainHall;
+	private State state = State.Enterance;
+	private List<Tuple<State, Integer>> stateCapacity = new ArrayList<>();
 	//==========================================================================//
 
 	/**
@@ -61,7 +62,7 @@ public class StatefulShortestPathMapBasedMovement extends MapBasedMovement imple
 	@Override
 	public Coord getInitialLocation() {
 		List<MapNode> allNodes = getMap().getNodes();
-		MapNode tmpNode = new MapNode(new Coord(811.59,139.32));
+		MapNode tmpNode = new MapNode(new Coord(841.74,41.77));
 
 		for (MapNode destination : allNodes) {
 			if(destination.getLocation().toString().equals(tmpNode.getLocation().toString())){
@@ -70,7 +71,7 @@ public class StatefulShortestPathMapBasedMovement extends MapBasedMovement imple
 			}
 		}
 
-		return new Coord(811.59,139.32);
+		return new Coord(841.74,41.77);
 	}
 
 
@@ -109,13 +110,16 @@ public class StatefulShortestPathMapBasedMovement extends MapBasedMovement imple
 		List<MapNode> allNodes = getMap().getNodes();
 		MapNode tmpNode;
 
-		if(state == StatefulShortestPathMapBasedMovement.State.LectureHall) {
+		if(state == State.LectureHall) {
 			tmpNode = new MapNode(new Coord(1033.57,124.38));
-		} else if(state == StatefulShortestPathMapBasedMovement.State.MainHall) {
-			//return new MapNode(new Coord(841.74,41.77)); --> Enterance
+		} else if(state == State.MainHall) {
 			tmpNode = new MapNode(new Coord(811.59,139.32));
-		} else if(state == StatefulShortestPathMapBasedMovement.State.Mesa) {
+		} else if(state == State.Mesa) {
 			tmpNode = new MapNode(new Coord(581.09,171.69));
+		} else if(state == State.Enterance) {
+			tmpNode = new MapNode(new Coord(841.74,41.77));
+		} else if(state == State.ComputerHall) {
+			tmpNode = new MapNode(new Coord(659.81,0.00));
 		} else {
 			tmpNode = new MapNode(new Coord(841.74,41.77));
 		}
@@ -139,15 +143,60 @@ public class StatefulShortestPathMapBasedMovement extends MapBasedMovement imple
 	private State updateState( final State state ) {
 		// TODO: Add time as parameter
 		// TODO: Set wait time
+		// TODO: Record node history
 		switch ( state ) {
+			case Enterance: {
+				List<Tuple<State, Double>> loc1Probs = new ArrayList<>();
+				if(SimClock.getTime() < 400) {
+					// TODO: Include node history in probabilities
+					loc1Probs.add(new Tuple<State, Double>(State.LectureHall, 10.0));
+					loc1Probs.add(new Tuple<State, Double>(State.MainHall, 20.0));
+					loc1Probs.add(new Tuple<State, Double>(State.ComputerHall, 30.0));
+					loc1Probs.add(new Tuple<State, Double>(State.Mesa, 40.0));
+				} else if(SimClock.getTime() > 400 && SimClock.getTime() < 600) {
+					// TODO: Include node history in probabilities
+					loc1Probs.add(new Tuple<State, Double>(State.Mesa, 100.0));
+				} else {
+					// TODO: Include node history in probabilities
+					loc1Probs.add(new Tuple<State, Double>(State.LectureHall, 10.0));
+					loc1Probs.add(new Tuple<State, Double>(State.MainHall, 40.0));
+					loc1Probs.add(new Tuple<State, Double>(State.ComputerHall, 40.0));
+					loc1Probs.add(new Tuple<State, Double>(State.Mesa, 10.0));
+				}
+
+
+				Random rand = new Random();
+				int index = rand.nextInt(100);
+				int sum = 0;
+
+				for (Tuple<State, Double> t : loc1Probs) {
+					sum += t.getValue();
+
+					if(sum >= index) {
+						return t.getKey();
+					}
+				}
+
+				// We shouldnt reach this point
+				return State.MainHall;
+			}
 			case LectureHall: {
 				List<Tuple<State, Double>> loc1Probs = new ArrayList<>();
 				if(SimClock.getTime() < 400) {
+					// TODO: Include node history in probabilities
 					loc1Probs.add(new Tuple<State, Double>(State.LectureHall, 10.0));
-					loc1Probs.add(new Tuple<State, Double>(State.MainHall, 50.0));
+					loc1Probs.add(new Tuple<State, Double>(State.MainHall, 20.0));
+					loc1Probs.add(new Tuple<State, Double>(State.ComputerHall, 30.0));
 					loc1Probs.add(new Tuple<State, Double>(State.Mesa, 40.0));
-				} else {
+				} else if(SimClock.getTime() > 400 && SimClock.getTime() < 600) {
+					// TODO: Include node history in probabilities
 					loc1Probs.add(new Tuple<State, Double>(State.Mesa, 100.0));
+				} else {
+					// TODO: Include node history in probabilities
+					loc1Probs.add(new Tuple<State, Double>(State.LectureHall, 10.0));
+					loc1Probs.add(new Tuple<State, Double>(State.MainHall, 40.0));
+					loc1Probs.add(new Tuple<State, Double>(State.ComputerHall, 40.0));
+					loc1Probs.add(new Tuple<State, Double>(State.Mesa, 10.0));
 				}
 
 
@@ -169,11 +218,20 @@ public class StatefulShortestPathMapBasedMovement extends MapBasedMovement imple
 			case MainHall: {
 				List<Tuple<State, Double>> loc2Probs = new ArrayList<>();
 				if(SimClock.getTime() < 400) {
-					loc2Probs.add(new Tuple<State, Double>(State.LectureHall, 40.0));
+					// TODO: Include node history in probabilities
+					loc2Probs.add(new Tuple<State, Double>(State.LectureHall, 20.0));
+					loc2Probs.add(new Tuple<State, Double>(State.ComputerHall, 30.0));
 					loc2Probs.add(new Tuple<State, Double>(State.MainHall, 10.0));
-					loc2Probs.add(new Tuple<State, Double>(State.Mesa, 50.0));
-				} else {
+					loc2Probs.add(new Tuple<State, Double>(State.Mesa, 40.0));
+				} else if(SimClock.getTime() > 400 && SimClock.getTime() < 600) {
+					// TODO: Include node history in probabilities
 					loc2Probs.add(new Tuple<State, Double>(State.Mesa, 100.0));
+				} else {
+					// TODO: Include node history in probabilities
+					loc2Probs.add(new Tuple<State, Double>(State.LectureHall, 40.0));
+					loc2Probs.add(new Tuple<State, Double>(State.ComputerHall, 40.0));
+					loc2Probs.add(new Tuple<State, Double>(State.MainHall, 10.0));
+					loc2Probs.add(new Tuple<State, Double>(State.Mesa, 10.0));
 				}
 
 
@@ -195,11 +253,54 @@ public class StatefulShortestPathMapBasedMovement extends MapBasedMovement imple
 			case Mesa: {
 				List<Tuple<State, Double>> loc3Probs = new ArrayList<>();
 				if(SimClock.getTime() < 400) {
-					loc3Probs.add(new Tuple<State, Double>(State.LectureHall, 50.0));
+					// TODO: Include node history in probabilities
+					loc3Probs.add(new Tuple<State, Double>(State.LectureHall, 40.0));
 					loc3Probs.add(new Tuple<State, Double>(State.MainHall, 20.0));
-					loc3Probs.add(new Tuple<State, Double>(State.Mesa, 30.0));
-				} else {
+					loc3Probs.add(new Tuple<State, Double>(State.ComputerHall, 30.0));
+					loc3Probs.add(new Tuple<State, Double>(State.Mesa, 10.0));
+				} else if(SimClock.getTime() > 400 && SimClock.getTime() < 600) {
+					// TODO: Include node history in probabilities
 					loc3Probs.add(new Tuple<State, Double>(State.Mesa, 100.0));
+				} else {
+					// TODO: Include node history in probabilities
+					loc3Probs.add(new Tuple<State, Double>(State.LectureHall, 30.0));
+					loc3Probs.add(new Tuple<State, Double>(State.ComputerHall, 30.0));
+					loc3Probs.add(new Tuple<State, Double>(State.MainHall, 40.0));
+					loc3Probs.add(new Tuple<State, Double>(State.Mesa, 0.0));
+				}
+
+				Random rand = new Random();
+				int index = rand.nextInt(100);
+				int sum = 0;
+
+				for (Tuple<State, Double> t : loc3Probs) {
+					sum += t.getValue();
+
+					if(sum >= index) {
+						return t.getKey();
+					}
+				}
+
+				// We shouldnt reach this point
+				return State.MainHall;
+			}
+			case ComputerHall: {
+				List<Tuple<State, Double>> loc3Probs = new ArrayList<>();
+				if(SimClock.getTime() < 400) {
+					// TODO: Include node history in probabilities
+					loc3Probs.add(new Tuple<State, Double>(State.LectureHall, 40.0));
+					loc3Probs.add(new Tuple<State, Double>(State.MainHall, 50.0));
+					loc3Probs.add(new Tuple<State, Double>(State.ComputerHall, 0.0));
+					loc3Probs.add(new Tuple<State, Double>(State.Mesa, 10.0));
+				} else if(SimClock.getTime() > 400 && SimClock.getTime() < 600) {
+					// TODO: Include node history in probabilities
+					loc3Probs.add(new Tuple<State, Double>(State.Mesa, 100.0));
+				} else {
+					// TODO: Include node history in probabilities
+					loc3Probs.add(new Tuple<State, Double>(State.LectureHall, 30.0));
+					loc3Probs.add(new Tuple<State, Double>(State.ComputerHall, 0.0));
+					loc3Probs.add(new Tuple<State, Double>(State.MainHall, 40.0));
+					loc3Probs.add(new Tuple<State, Double>(State.Mesa, 30.0));
 				}
 
 				Random rand = new Random();
@@ -237,7 +338,7 @@ public class StatefulShortestPathMapBasedMovement extends MapBasedMovement imple
 	}
 
 	public static enum State {
-		LectureHall, MainHall, Mesa
+		LectureHall, MainHall, Mesa, Enterance, ComputerHall
 	}
 	//==========================================================================//
 
