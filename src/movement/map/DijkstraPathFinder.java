@@ -83,7 +83,7 @@ public class DijkstraPathFinder {
 
 		// always take the node with shortest distance
 		while ((node = unvisited.poll()) != null) {
-			System.out.println("unvisited: " + node.getLocation().toString());
+			//System.out.println("unvisited: " + node.getLocation().toString());
 			if (node == to) {
 				break; // we found the destination -> no need to search further
 			}
@@ -95,10 +95,10 @@ public class DijkstraPathFinder {
 		// now we either have the path or such path wasn't available
 		if (node == to) { // found a path
 			path.add(0,to);
-			System.out.println("Getting path: " + to.getLocation().toString());
+			//System.out.println("Getting path: " + to.getLocation().toString());
 			MapNode prev = prevNodes.get(to);
 			while (prev != from) {
-				System.out.println("Getting path: " + prev.getLocation().toString());
+				//System.out.println("Getting path: " + prev.getLocation().toString());
 				path.add(0, prev);	// always put previous node to beginning
 				prev = prevNodes.get(prev);
 			}

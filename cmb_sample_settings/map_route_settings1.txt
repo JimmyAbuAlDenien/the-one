@@ -31,7 +31,7 @@ Scenario.nrofHostGroups = 1
 #Group1.waitTime = 0, 120
 
 Group1.groupID = B
-Group1.nrofHosts = 50
+Group1.nrofHosts = 250
 Group1.nrofInterfaces = 1
 Group1.interface1 = myInterface
 Group1.movementModel = StatefulShortestPathMapBasedMovement
