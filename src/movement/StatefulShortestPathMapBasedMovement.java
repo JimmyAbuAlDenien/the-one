@@ -13,8 +13,11 @@ import movement.map.PointsOfInterest;
 import util.Tuple;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
+
+import static movement.StatefulShortestPathMapBasedMovement.State.*;
 
 /**
  * Map based movement model that uses Dijkstra's algorithm to find shortest
@@ -241,215 +244,81 @@ public class StatefulShortestPathMapBasedMovement extends MapBasedMovement imple
 	 * @return
 	 *  the next state
 	 */
-	private State updateState( final State state ) {
+	private State updateState( final State state )
+	{
 		// TODO: Add time as parameter
 		// TODO: Set wait time
 		// TODO: Record node history
-//		switch ( state ) {
-//			case Enterance: {
-//				List<Tuple<State, Double>> loc1Probs = new ArrayList<>();
-//				loc1Probs.add(new Tuple<State, Double>(State.LectureHall1, 7.14));
-//				loc1Probs.add(new Tuple<State, Double>(State.LectureHall2, 7.14));
-//				loc1Probs.add(new Tuple<State, Double>(State.LectureHall3, 7.14));
-//
-//				loc1Probs.add(new Tuple<State, Double>(State.SeminarHall1, 7.14));
-//				loc1Probs.add(new Tuple<State, Double>(State.SeminarHall2, 7.14));
-//				loc1Probs.add(new Tuple<State, Double>(State.SeminarHall3, 7.14));
-//				loc1Probs.add(new Tuple<State, Double>(State.SeminarHall4, 7.14));
-//				loc1Probs.add(new Tuple<State, Double>(State.SeminarHall5, 7.14));
-//
-//				loc1Probs.add(new Tuple<State, Double>(State.MainHall1, 7.14));
-//				loc1Probs.add(new Tuple<State, Double>(State.MainHall2, 7.14));
-//				loc1Probs.add(new Tuple<State, Double>(State.MainHall3, 7.14));
-//
-//				loc1Probs.add(new Tuple<State, Double>(State.Library, 7.14));
-//				loc1Probs.add(new Tuple<State, Double>(State.ComputerHall, 7.14));
-//				loc1Probs.add(new Tuple<State, Double>(State.Mensa, 7.14));
-//
-////				if(SimClock.getTime() < 400) {
-////					// TODO: Include node history in probabilities
-////					loc1Probs.add(new Tuple<State, Double>(State.LectureHall, 10.0));
-////					loc1Probs.add(new Tuple<State, Double>(State.MainHall, 20.0));
-////					loc1Probs.add(new Tuple<State, Double>(State.ComputerHall, 30.0));
-////					loc1Probs.add(new Tuple<State, Double>(State.Mensa, 40.0));
-////				} else if(SimClock.getTime() > 400 && SimClock.getTime() < 600) {
-////					// TODO: Include node history in probabilities
-////					loc1Probs.add(new Tuple<State, Double>(State.Mensa, 100.0));
-////				} else {
-////					// TODO: Include node history in probabilities
-////					loc1Probs.add(new Tuple<State, Double>(State.LectureHall, 10.0));
-////					loc1Probs.add(new Tuple<State, Double>(State.MainHall, 40.0));
-////					loc1Probs.add(new Tuple<State, Double>(State.ComputerHall, 40.0));
-////					loc1Probs.add(new Tuple<State, Double>(State.Mensa, 10.0));
-////				}
-//
-//
-//				Random rand = new Random();
-//				int index = rand.nextInt(100);
-//				int sum = 0;
-//
-//				for (Tuple<State, Double> t : loc1Probs) {
-//					sum += t.getValue();
-//
-//					if(sum >= index) {
-//						return t.getKey();
-//					}
-//				}
-//
-//				// We shouldnt reach this point
-//				return State.MainHall1;
-//			}
-//			case LectureHall: {
-//				List<Tuple<State, Double>> loc1Probs = new ArrayList<>();
-//				if(SimClock.getTime() < 400) {
-//					// TODO: Include node history in probabilities
-//					loc1Probs.add(new Tuple<State, Double>(State.LectureHall, 10.0));
-//					loc1Probs.add(new Tuple<State, Double>(State.MainHall, 20.0));
-//					loc1Probs.add(new Tuple<State, Double>(State.ComputerHall, 30.0));
-//					loc1Probs.add(new Tuple<State, Double>(State.Mensa, 40.0));
-//				} else if(SimClock.getTime() > 400 && SimClock.getTime() < 600) {
-//					// TODO: Include node history in probabilities
-//					loc1Probs.add(new Tuple<State, Double>(State.Mensa, 100.0));
-//				} else {
-//					// TODO: Include node history in probabilities
-//					loc1Probs.add(new Tuple<State, Double>(State.LectureHall, 10.0));
-//					loc1Probs.add(new Tuple<State, Double>(State.MainHall, 40.0));
-//					loc1Probs.add(new Tuple<State, Double>(State.ComputerHall, 40.0));
-//					loc1Probs.add(new Tuple<State, Double>(State.Mensa, 10.0));
-//				}
-//
-//
-//				Random rand = new Random();
-//				int index = rand.nextInt(100);
-//				int sum = 0;
-//
-//				for (Tuple<State, Double> t : loc1Probs) {
-//					sum += t.getValue();
-//
-//					if(sum >= index) {
-//						return t.getKey();
-//					}
-//				}
-//
-//				// We shouldnt reach this point
-//				return State.MainHall;
-//			}
-//			case MainHall: {
-//				List<Tuple<State, Double>> loc2Probs = new ArrayList<>();
-//				if(SimClock.getTime() < 400) {
-//					// TODO: Include node history in probabilities
-//					loc2Probs.add(new Tuple<State, Double>(State.LectureHall, 20.0));
-//					loc2Probs.add(new Tuple<State, Double>(State.ComputerHall, 30.0));
-//					loc2Probs.add(new Tuple<State, Double>(State.MainHall, 10.0));
-//					loc2Probs.add(new Tuple<State, Double>(State.Mensa, 40.0));
-//				} else if(SimClock.getTime() > 400 && SimClock.getTime() < 600) {
-//					// TODO: Include node history in probabilities
-//					loc2Probs.add(new Tuple<State, Double>(State.Mensa, 100.0));
-//				} else {
-//					// TODO: Include node history in probabilities
-//					loc2Probs.add(new Tuple<State, Double>(State.LectureHall, 40.0));
-//					loc2Probs.add(new Tuple<State, Double>(State.ComputerHall, 40.0));
-//					loc2Probs.add(new Tuple<State, Double>(State.MainHall, 10.0));
-//					loc2Probs.add(new Tuple<State, Double>(State.Mensa, 10.0));
-//				}
-//
-//
-//				Random rand = new Random();
-//				int index = rand.nextInt(100);
-//				int sum = 0;
-//
-//				for (Tuple<State, Double> t : loc2Probs) {
-//					sum += t.getValue();
-//
-//					if(sum >= index) {
-//						return t.getKey();
-//					}
-//				}
-//
-//				// We shouldnt reach this point
-//				return State.MainHall;
-//			}
-//			case Mensa: {
-//				List<Tuple<State, Double>> loc3Probs = new ArrayList<>();
-//				if(SimClock.getTime() < 400) {
-//					// TODO: Include node history in probabilities
-//					loc3Probs.add(new Tuple<State, Double>(State.LectureHall, 40.0));
-//					loc3Probs.add(new Tuple<State, Double>(State.MainHall, 20.0));
-//					loc3Probs.add(new Tuple<State, Double>(State.ComputerHall, 30.0));
-//					loc3Probs.add(new Tuple<State, Double>(State.Mensa, 10.0));
-//				} else if(SimClock.getTime() > 400 && SimClock.getTime() < 600) {
-//					// TODO: Include node history in probabilities
-//					loc3Probs.add(new Tuple<State, Double>(State.Mensa, 100.0));
-//				} else {
-//					// TODO: Include node history in probabilities
-//					loc3Probs.add(new Tuple<State, Double>(State.LectureHall, 30.0));
-//					loc3Probs.add(new Tuple<State, Double>(State.ComputerHall, 30.0));
-//					loc3Probs.add(new Tuple<State, Double>(State.MainHall, 40.0));
-//					loc3Probs.add(new Tuple<State, Double>(State.Mensa, 0.0));
-//				}
-//
-//				Random rand = new Random();
-//				int index = rand.nextInt(100);
-//				int sum = 0;
-//
-//				for (Tuple<State, Double> t : loc3Probs) {
-//					sum += t.getValue();
-//
-//					if(sum >= index) {
-//						return t.getKey();
-//					}
-//				}
-//
-//				// We shouldnt reach this point
-//				return State.MainHall;
-//			}
-//			case ComputerHall: {
-//				List<Tuple<State, Double>> loc3Probs = new ArrayList<>();
-//				if(SimClock.getTime() < 400) {
-//					// TODO: Include node history in probabilities
-//					loc3Probs.add(new Tuple<State, Double>(State.LectureHall, 40.0));
-//					loc3Probs.add(new Tuple<State, Double>(State.MainHall, 50.0));
-//					loc3Probs.add(new Tuple<State, Double>(State.ComputerHall, 0.0));
-//					loc3Probs.add(new Tuple<State, Double>(State.Mensa, 10.0));
-//				} else if(SimClock.getTime() > 400 && SimClock.getTime() < 600) {
-//					// TODO: Include node history in probabilities
-//					loc3Probs.add(new Tuple<State, Double>(State.Mensa, 100.0));
-//				} else {
-//					// TODO: Include node history in probabilities
-//					loc3Probs.add(new Tuple<State, Double>(State.LectureHall, 30.0));
-//					loc3Probs.add(new Tuple<State, Double>(State.ComputerHall, 0.0));
-//					loc3Probs.add(new Tuple<State, Double>(State.MainHall, 40.0));
-//					loc3Probs.add(new Tuple<State, Double>(State.Mensa, 30.0));
-//				}
-//
-//				Random rand = new Random();
-//				int index = rand.nextInt(100);
-//				int sum = 0;
-//
-//				for (Tuple<State, Double> t : loc3Probs) {
-//					sum += t.getValue();
-//
-//					if(sum >= index) {
-//						return t.getKey();
-//					}
-//				}
-//
-//				// We shouldnt reach this point
-//				return State.MainHall1;
-//			}
-//			default: {
-//				throw new RuntimeException( "Invalid state." );
-//			}
-//		}
+
+		if(state == State.Enterance)
+		{
+			//The node has not been in any other place before
+			if(hostHistory.size() == 0)
+				{
+					//It is lunch Time
+					if (SimClock.getTime()>700 && SimClock.getTime()<900)
+					{
+						return getProbabilitiesList("case1");
+					}
+					//It is not Lunch Time
+					else
+					{
+						return getProbabilitiesList("case2");
+					}
+
+				}
+			else
+				{
+					//It is lunch Time
+					if (SimClock.getTime()>700 && SimClock.getTime()<900)
+					{
+						return getProbabilitiesList("case3");
+					}
+					//It is not Lunch Time
+					else
+					{
+						return getProbabilitiesList("case4");
+					}
+				}
+		} else if(state == LectureHall1)
+				{
+					if(hostHistory.size() == 0)
+					{
+						//It is lunch Time
+						if (SimClock.getTime()>700 && SimClock.getTime()<900)
+						{
+							return getProbabilitiesList("case5");
+						}
+						//It is not Lunch Time
+						else
+						{
+							return getProbabilitiesList("case6");
+						}
+					}
+					else
+					{
+						//It is lunch Time
+						if (SimClock.getTime()>700 && SimClock.getTime()<900)
+						{
+							return getProbabilitiesList("case7");
+						}
+						//It is not Lunch Time
+						else
+						{
+							return getProbabilitiesList("case8");
+						}
+
+					}
+		}
 
 		if(hostHistory.size() >= 3 && state != State.Mensa) {
 			decreaseStateCapacity(state);
 			return State.Enterance;
 		} else {
 			List<Tuple<State, Double>> loc1Probs = new ArrayList<>();
-			loc1Probs.add(new Tuple<State, Double>(State.LectureHall1, 7.14));
-			loc1Probs.add(new Tuple<State, Double>(State.LectureHall2, 7.14));
-			loc1Probs.add(new Tuple<State, Double>(State.LectureHall3, 7.14));
+			loc1Probs.add(new Tuple<State, Double>(LectureHall1, 7.14));
+			loc1Probs.add(new Tuple<State, Double>(LectureHall2, 7.14));
+			loc1Probs.add(new Tuple<State, Double>(LectureHall3, 7.14));
 
 			loc1Probs.add(new Tuple<State, Double>(State.SeminarHall1, 7.14));
 			loc1Probs.add(new Tuple<State, Double>(State.SeminarHall2, 7.14));
@@ -461,7 +330,7 @@ public class StatefulShortestPathMapBasedMovement extends MapBasedMovement imple
 			loc1Probs.add(new Tuple<State, Double>(State.MainHall2, 7.14));
 			loc1Probs.add(new Tuple<State, Double>(State.MainHall3, 7.14));
 
-			loc1Probs.add(new Tuple<State, Double>(State.Library, 7.14));
+			loc1Probs.add(new Tuple<State, Double>(Library, 7.14));
 			loc1Probs.add(new Tuple<State, Double>(State.ComputerHall, 7.14));
 			loc1Probs.add(new Tuple<State, Double>(State.Mensa, 7.14));
 
@@ -493,8 +362,199 @@ public class StatefulShortestPathMapBasedMovement extends MapBasedMovement imple
 			}
 		}
 
+		return getProbabilitiesList("none");
+	}
+
+	public State getProbabilitiesList(String escenario)
+	{
+
+		//Array that will contain all the possible states for the state machine
+		LinkedList<State> states = new LinkedList<>();
+		states.add(LectureHall1);
+		states.add(LectureHall2);
+		states.add(LectureHall3);
+		states.add(SeminarHall1);
+		states.add(SeminarHall2);
+		states.add(SeminarHall3);
+		states.add(SeminarHall4);
+		states.add(SeminarHall5);
+		states.add(MainHall1);
+		states.add(MainHall2);
+		states.add(MainHall3);
+		states.add(Mensa);
+		states.add(Enterance);
+		states.add(ComputerHall);
+		states.add(Library);
+		//Array with the probability for each one of the states. It is in the same order
+		//than the states list e.g. LectureHall1 = 10.
+		int[] case1 = {0,7,0,0,0,0,8,6,15,10,8,35,0,5,6};
+		int[] case2 = {20,15,8,13,8,10,8,6,2,2,1,2,0,1,4};
+		int[] case3 = {5,7,8,6,4,5,8,6,8,5,6,12,15,1,4};
+		int[] case4 = {9,8,10,5,2,7,4,5,6,5,5,3,14,7,10};
+		int[] case5 = {0,2,0,0,0,0,8,6,15,10,13,35,0,5,6};
+		int[] case6 = {20,5,8,13,8,10,8,6,2,2,1,2,10,1,4};
+		int[] case7 = {5,0,0,0,0,0,6,6,10,10,10,29,19,1,4};
+		int[] case8 = {9,0,0,5,2,7,4,5,6,5,5,15,20,7,10};
+
+
+		//final state list
+		LinkedList <State> result = new LinkedList<State>();
+
+		//-----------------------------------------------------------
+		//Case1: Initial State = Entrance | Historic: NO | Lunch Time
+		//-----------------------------------------------------------
+			if (escenario.equals("case1"))
+			{
+				//System.out.println("Size: "+states.size());
+				for (int i=0;i<states.size();i++)
+				{
+					for (int j=0;j<case1[i];j++)
+					{
+						result.add(states.get(i));
+					}
+				}
+				Random rn = new Random();
+				int ranDom = rn.nextInt(100);
+				return result.get(ranDom);
+			}
+
+		//-----------------------------------------------------------
+		//Case2: Initial State = Entrance | Historic: NO | NO Lunch Time
+		//-----------------------------------------------------------
+
+		if (escenario.equals("case2"))
+		{
+			//System.out.println("Size: "+states.size());
+			for (int i=0;i<states.size();i++)
+			{
+				for (int j=0;j<case2[i];j++)
+				{
+					result.add(states.get(i));
+				}
+			}
+			Random rn = new Random();
+			int ranDom = rn.nextInt(100);
+			return result.get(ranDom);
+		}
+
+
+		//-----------------------------------------------------------
+		//Case3: Initial State = Entrance | Historic: YES | Lunch Time
+		//-----------------------------------------------------------
+
+		if (escenario.equals("case3"))
+		{
+			//System.out.println("Size: "+states.size());
+			for (int i=0;i<states.size();i++)
+			{
+				for (int j=0;j<case3[i];j++)
+				{
+					result.add(states.get(i));
+				}
+			}
+			Random rn = new Random();
+			int ranDom = rn.nextInt(100);
+			return result.get(ranDom);
+		}
+
+		//-----------------------------------------------------------
+		//Case4: Initial State = Entrance | Historic: YES | NO Lunch Time
+		//-----------------------------------------------------------
+
+		if (escenario.equals("case4"))
+		{
+			//System.out.println("Size: "+states.size());
+			for (int i=0;i<states.size();i++)
+			{
+				for (int j=0;j<case4[i];j++)
+				{
+					result.add(states.get(i));
+				}
+			}
+			Random rn = new Random();
+			int ranDom = rn.nextInt(100);
+			return result.get(ranDom);
+		}
+
+		//-----------------------------------------------------------
+		//Case5: Initial State = LectureHall | Historic: NO | Lunch Time
+		//-----------------------------------------------------------
+		if (escenario.equals("case5"))
+		{
+			//System.out.println("Size: "+states.size());
+			for (int i=0;i<states.size();i++)
+			{
+				for (int j=0;j<case5[i];j++)
+				{
+					result.add(states.get(i));
+				}
+			}
+			Random rn = new Random();
+			int ranDom = rn.nextInt(100);
+			return result.get(ranDom);
+		}
+
+		//-----------------------------------------------------------
+		//Case6: Initial State = LectureHall | Historic: NO | NO Lunch Time
+		//-----------------------------------------------------------
+
+		if (escenario.equals("case6"))
+		{
+			//System.out.println("Size: "+states.size());
+			for (int i=0;i<states.size();i++)
+			{
+				for (int j=0;j<case6[i];j++)
+				{
+					result.add(states.get(i));
+				}
+			}
+			Random rn = new Random();
+			int ranDom = rn.nextInt(100);
+			return result.get(ranDom);
+		}
+
+
+		//-----------------------------------------------------------
+		//Case7: Initial State = LectureHall | Historic: YES | Lunch Time
+		//-----------------------------------------------------------
+
+		if (escenario.equals("case7"))
+		{
+			//System.out.println("Size: "+states.size());
+			for (int i=0;i<states.size();i++)
+			{
+				for (int j=0;j<case7[i];j++)
+				{
+					result.add(states.get(i));
+				}
+			}
+			Random rn = new Random();
+			int ranDom = rn.nextInt(100);
+			return result.get(ranDom);
+		}
+
+		//-----------------------------------------------------------
+		//Case8: Initial State = LectureHall | Historic: YES | NO Lunch Time
+		//-----------------------------------------------------------
+
+		if (escenario.equals("case8"))
+		{
+			//System.out.println("Size: "+states.size());
+			for (int i=0;i<states.size();i++)
+			{
+				for (int j=0;j<case8[i];j++)
+				{
+					result.add(states.get(i));
+				}
+			}
+			Random rn = new Random();
+			int ranDom = rn.nextInt(100);
+			return result.get(ranDom);
+		}
+
 		return null;
 	}
+
 
 	private void increaseStateCapacity(State state) {
 		Boolean found = false;
@@ -540,16 +600,19 @@ public class StatefulShortestPathMapBasedMovement extends MapBasedMovement imple
 		minWaitTime = 50;
 
 		// TODO: add wait time for all states
-		if(state == State.Mensa) {
+		if(state == State.Mensa)
+		{
 			maxWaitTime = 200;
 			minWaitTime = 50;
-		} else if(state == State.LectureHall1) {
+		} else if(state == LectureHall1)
+		{
 			maxWaitTime = 500;
 			minWaitTime = 300;
 		}
 	}
 
-	public static enum State {
+	public static enum State
+	{
 		LectureHall1, LectureHall2, LectureHall3,
 		SeminarHall1, SeminarHall2, SeminarHall3, SeminarHall4, SeminarHall5,
 		MainHall1, MainHall2, MainHall3,
