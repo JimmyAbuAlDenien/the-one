@@ -311,6 +311,410 @@ public class StatefulShortestPathMapBasedMovement extends MapBasedMovement imple
 					}
 		}
 
+		if(state == State.LectureHall2)
+		{
+			//The node has not been in any other place before
+			if(hostHistory.size() == 0)
+			{
+				//It is lunch Time
+				if (SimClock.getTime()>700 && SimClock.getTime()<900)
+				{
+					return getProbabilitiesList("case9");
+				}
+				//It is not Lunch Time
+				else
+				{
+					return getProbabilitiesList("case10");
+				}
+
+			}
+			else
+			{
+				//It is lunch Time
+				if (SimClock.getTime()>700 && SimClock.getTime()<900)
+				{
+					return getProbabilitiesList("case11");
+				}
+				//It is not Lunch Time
+				else
+				{
+					return getProbabilitiesList("case12");
+				}
+			}
+		} else if(state == LectureHall3)
+		{
+			if(hostHistory.size() == 0)
+			{
+				//It is lunch Time
+				if (SimClock.getTime()>700 && SimClock.getTime()<900)
+				{
+					return getProbabilitiesList("case13");
+				}
+				//It is not Lunch Time
+				else
+				{
+					return getProbabilitiesList("case14");
+				}
+			}
+			else
+			{
+				//It is lunch Time
+				if (SimClock.getTime()>700 && SimClock.getTime()<900)
+				{
+					return getProbabilitiesList("case15");
+				}
+				//It is not Lunch Time
+				else
+				{
+					return getProbabilitiesList("case16");
+				}
+
+			}
+		}
+
+		else if(state == SeminarHall1)
+		{
+			if(hostHistory.size() == 0)
+			{
+				//It is lunch Time
+				if (SimClock.getTime()>700 && SimClock.getTime()<900)
+				{
+					return getProbabilitiesList("case17");
+				}
+				//It is not Lunch Time
+				else
+				{
+					return getProbabilitiesList("case18");
+				}
+			}
+			else
+			{
+				//It is lunch Time
+				if (SimClock.getTime()>700 && SimClock.getTime()<900)
+				{
+					return getProbabilitiesList("case19");
+				}
+				//It is not Lunch Time
+				else
+				{
+					return getProbabilitiesList("case20");
+				}
+
+			}
+		}
+
+		else if(state == SeminarHall2)
+		{
+			if(hostHistory.size() == 0)
+			{
+				//It is lunch Time
+				if (SimClock.getTime()>700 && SimClock.getTime()<900)
+				{
+					return getProbabilitiesList("case21");
+				}
+				//It is not Lunch Time
+				else
+				{
+					return getProbabilitiesList("case22");
+				}
+			}
+			else
+			{
+				//It is lunch Time
+				if (SimClock.getTime()>700 && SimClock.getTime()<900)
+				{
+					return getProbabilitiesList("case23");
+				}
+				//It is not Lunch Time
+				else
+				{
+					return getProbabilitiesList("case24");
+				}
+
+			}
+		}
+
+		else if(state == SeminarHall3)
+		{
+			if(hostHistory.size() == 0)
+			{
+				//It is lunch Time
+				if (SimClock.getTime()>700 && SimClock.getTime()<900)
+				{
+					return getProbabilitiesList("case25");
+				}
+				//It is not Lunch Time
+				else
+				{
+					return getProbabilitiesList("case26");
+				}
+			}
+			else
+			{
+				//It is lunch Time
+				if (SimClock.getTime()>700 && SimClock.getTime()<900)
+				{
+					return getProbabilitiesList("case27");
+				}
+				//It is not Lunch Time
+				else
+				{
+					return getProbabilitiesList("case28");
+				}
+
+			}
+		}
+
+		else if(state == SeminarHall4)
+		{
+			if(hostHistory.size() == 0)
+			{
+				//It is lunch Time
+				if (SimClock.getTime()>700 && SimClock.getTime()<900)
+				{
+					return getProbabilitiesList("case29");
+				}
+				//It is not Lunch Time
+				else
+				{
+					return getProbabilitiesList("case30");
+				}
+			}
+			else
+			{
+				//It is lunch Time
+				if (SimClock.getTime()>700 && SimClock.getTime()<900)
+				{
+					return getProbabilitiesList("case31");
+				}
+				//It is not Lunch Time
+				else
+				{
+					return getProbabilitiesList("case32");
+				}
+
+			}
+		}
+
+		else if(state == SeminarHall5)
+		{
+			if(hostHistory.size() == 0)
+			{
+				//It is lunch Time
+				if (SimClock.getTime()>700 && SimClock.getTime()<900)
+				{
+					return getProbabilitiesList("case33");
+				}
+				//It is not Lunch Time
+				else
+				{
+					return getProbabilitiesList("case34");
+				}
+			}
+			else
+			{
+				//It is lunch Time
+				if (SimClock.getTime()>700 && SimClock.getTime()<900)
+				{
+					return getProbabilitiesList("case35");
+				}
+				//It is not Lunch Time
+				else
+				{
+					return getProbabilitiesList("case36");
+				}
+
+			}
+		}
+
+
+		else if(state == MainHall1)
+		{
+			if(hostHistory.size() == 0)
+			{
+				//It is lunch Time
+				if (SimClock.getTime()>700 && SimClock.getTime()<900)
+				{
+					return getProbabilitiesList("case37");
+				}
+				//It is not Lunch Time
+				else
+				{
+					return getProbabilitiesList("case38");
+				}
+			}
+			else
+			{
+				//It is lunch Time
+				if (SimClock.getTime()>700 && SimClock.getTime()<900)
+				{
+					return getProbabilitiesList("case39");
+				}
+				//It is not Lunch Time
+				else
+				{
+					return getProbabilitiesList("case40");
+				}
+
+			}
+		}
+
+		else if(state == MainHall2)
+		{
+			if(hostHistory.size() == 0)
+			{
+				//It is lunch Time
+				if (SimClock.getTime()>700 && SimClock.getTime()<900)
+				{
+					return getProbabilitiesList("case41");
+				}
+				//It is not Lunch Time
+				else
+				{
+					return getProbabilitiesList("case42");
+				}
+			}
+			else
+			{
+				//It is lunch Time
+				if (SimClock.getTime()>700 && SimClock.getTime()<900)
+				{
+					return getProbabilitiesList("case43");
+				}
+				//It is not Lunch Time
+				else
+				{
+					return getProbabilitiesList("case44");
+				}
+
+			}
+		}
+
+		else if(state == MainHall3)
+		{
+			if(hostHistory.size() == 0)
+			{
+				//It is lunch Time
+				if (SimClock.getTime()>700 && SimClock.getTime()<900)
+				{
+					return getProbabilitiesList("case45");
+				}
+				//It is not Lunch Time
+				else
+				{
+					return getProbabilitiesList("case46");
+				}
+			}
+			else
+			{
+				//It is lunch Time
+				if (SimClock.getTime()>700 && SimClock.getTime()<900)
+				{
+					return getProbabilitiesList("case47");
+				}
+				//It is not Lunch Time
+				else
+				{
+					return getProbabilitiesList("case48");
+				}
+
+			}
+		}
+
+		else if(state == Mensa)
+		{
+			if(hostHistory.size() == 0)
+			{
+				//It is lunch Time
+				if (SimClock.getTime()>700 && SimClock.getTime()<900)
+				{
+					return getProbabilitiesList("case49");
+				}
+				//It is not Lunch Time
+				else
+				{
+					return getProbabilitiesList("case50");
+				}
+			}
+			else
+			{
+				//It is lunch Time
+				if (SimClock.getTime()>700 && SimClock.getTime()<900)
+				{
+					return getProbabilitiesList("case51");
+				}
+				//It is not Lunch Time
+				else
+				{
+					return getProbabilitiesList("case52");
+				}
+
+			}
+		}
+
+
+		else if(state == ComputerHall)
+		{
+			if(hostHistory.size() == 0)
+			{
+				//It is lunch Time
+				if (SimClock.getTime()>700 && SimClock.getTime()<900)
+				{
+					return getProbabilitiesList("case53");
+				}
+				//It is not Lunch Time
+				else
+				{
+					return getProbabilitiesList("case54");
+				}
+			}
+			else
+			{
+				//It is lunch Time
+				if (SimClock.getTime()>700 && SimClock.getTime()<900)
+				{
+					return getProbabilitiesList("case55");
+				}
+				//It is not Lunch Time
+				else
+				{
+					return getProbabilitiesList("case56");
+				}
+
+			}
+		}
+
+		else if(state == ComputerHall)
+		{
+			if(hostHistory.size() == 0)
+			{
+				//It is lunch Time
+				if (SimClock.getTime()>700 && SimClock.getTime()<900)
+				{
+					return getProbabilitiesList("case57");
+				}
+				//It is not Lunch Time
+				else
+				{
+					return getProbabilitiesList("case58");
+				}
+			}
+			else
+			{
+				//It is lunch Time
+				if (SimClock.getTime()>700 && SimClock.getTime()<900)
+				{
+					return getProbabilitiesList("case59");
+				}
+				//It is not Lunch Time
+				else
+				{
+					return getProbabilitiesList("case60");
+				}
+
+			}
+		}
+
 		if(hostHistory.size() >= 3 && state != State.Mensa) {
 			decreaseStateCapacity(state);
 			return State.Enterance;
@@ -395,6 +799,62 @@ public class StatefulShortestPathMapBasedMovement extends MapBasedMovement imple
 		int[] case6 = {20,5,8,13,8,10,8,6,2,2,1,2,10,1,4};
 		int[] case7 = {5,0,0,0,0,0,6,6,10,10,10,29,19,1,4};
 		int[] case8 = {9,0,0,5,2,7,4,5,6,5,5,15,20,7,10};
+		int[] case9 = {0,7,0,0,0,0,8,6,15,10,8,35,0,5,6};
+		int[] case10 = {20,15,8,13,8,10,8,6,2,2,1,2,0,1,4};
+		int[] case11 = {5,7,8,6,4,5,8,6,8,5,6,12,15,1,4};
+		int[] case12 = {9,8,10,5,2,7,4,5,6,5,5,3,14,7,10};
+		int[] case13 = {0,7,0,0,0,0,8,6,15,10,8,35,0,5,6};
+		int[] case14 = {20,15,8,13,8,10,8,6,2,2,1,2,0,1,4};
+		int[] case15 = {5,7,8,6,4,5,8,6,8,5,6,12,15,1,4};
+		int[] case16 = {9,8,10,5,2,7,4,5,6,5,5,3,14,7,10};
+		int[] case17 = {0,2,0,0,0,0,8,6,15,10,13,35,0,5,6};
+		int[] case18 = {20,5,8,13,8,10,8,6,2,2,1,2,10,1,4};
+		int[] case19 = {5,0,0,0,0,0,6,6,10,10,10,29,19,1,4};
+		int[] case20 = {9,0,0,5,2,7,4,5,6,5,5,15,20,7,10};
+		int[] case21 = {0,7,0,0,0,0,8,6,15,10,8,35,0,5,6};
+		int[] case22 = {20,15,8,13,8,10,8,6,2,2,1,2,0,1,4};
+		int[] case23 = {5,7,8,6,4,5,8,6,8,5,6,12,15,1,4};
+		int[] case24 = {9,8,10,5,2,7,4,5,6,5,5,3,14,7,10};
+		int[] case25 = {9,8,10,5,2,7,4,5,6,5,5,3,14,7,10};
+		int[] case26 = {9,8,10,5,2,7,4,5,6,5,5,3,14,7,10};
+		int[] case27 = {9,8,10,5,2,7,4,5,6,5,5,3,14,7,10};
+		int[] case28 = {0,7,0,0,0,0,8,6,15,10,8,35,0,5,6};
+		int[] case29 = {20,15,8,13,8,10,8,6,2,2,1,2,0,1,4};
+		int[] case30 = {5,7,8,6,4,5,8,6,8,5,6,12,15,1,4};
+		int[] case31 = {9,8,10,5,2,7,4,5,6,5,5,3,14,7,10};
+		int[] case32 = {0,2,0,0,0,0,8,6,15,10,13,35,0,5,6};
+		int[] case33 = {20,5,8,13,8,10,8,6,2,2,1,2,10,1,4};
+		int[] case34 = {5,0,0,0,0,0,6,6,10,10,10,29,19,1,4};
+		int[] case35 = {9,0,0,5,2,7,4,5,6,5,5,15,20,7,10};
+		int[] case36 = {0,7,0,0,0,0,8,6,15,10,8,35,0,5,6};
+		int[] case37 = {20,15,8,13,8,10,8,6,2,2,1,2,0,1,4};
+		int[] case38 = {5,7,8,6,4,5,8,6,8,5,6,12,15,1,4};
+		int[] case39 = {9,8,10,5,2,7,4,5,6,5,5,3,14,7,10};
+		int[] case40 = {0,7,0,0,0,0,8,6,15,10,8,35,0,5,6};
+		int[] case41 = {20,15,8,13,8,10,8,6,2,2,1,2,0,1,4};
+		int[] case42 = {5,7,8,6,4,5,8,6,8,5,6,12,15,1,4};
+		int[] case43 = {9,8,10,5,2,7,4,5,6,5,5,3,14,7,10};
+		int[] case44 = {0,2,0,0,0,0,8,6,15,10,13,35,0,5,6};
+		int[] case45 = {20,5,8,13,8,10,8,6,2,2,1,2,10,1,4};
+		int[] case46 = {5,0,0,0,0,0,6,6,10,10,10,29,19,1,4};
+		int[] case47 = {9,0,0,5,2,7,4,5,6,5,5,15,20,7,10};
+		int[] case48 = {0,7,0,0,0,0,8,6,15,10,8,35,0,5,6};
+		int[] case49 = {20,15,8,13,8,10,8,6,2,2,1,2,0,1,4};
+		int[] case50 = {5,7,8,6,4,5,8,6,8,5,6,12,15,1,4};
+		int[] case51 = {9,8,10,5,2,7,4,5,6,5,5,3,14,7,10};
+		int[] case52 = {0,7,0,0,0,0,8,6,15,10,8,35,0,5,6};
+		int[] case53 = {20,15,8,13,8,10,8,6,2,2,1,2,0,1,4};
+		int[] case54 = {5,7,8,6,4,5,8,6,8,5,6,12,15,1,4};
+		int[] case55 = {9,8,10,5,2,7,4,5,6,5,5,3,14,7,10};
+		int[] case56 = {0,2,0,0,0,0,8,6,15,10,13,35,0,5,6};
+		int[] case57 = {20,5,8,13,8,10,8,6,2,2,1,2,10,1,4};
+		int[] case58 = {5,0,0,0,0,0,6,6,10,10,10,29,19,1,4};
+		int[] case59 = {9,0,0,5,2,7,4,5,6,5,5,15,20,7,10};
+		int[] case60 = {0,7,0,0,0,0,8,6,15,10,8,35,0,5,6};
+		int[] case61 = {20,15,8,13,8,10,8,6,2,2,1,2,0,1,4};
+		int[] case62 = {5,7,8,6,4,5,8,6,8,5,6,12,15,1,4};
+		int[] case63 = {9,8,10,5,2,7,4,5,6,5,5,3,14,7,10};
+
 
 
 		//final state list
@@ -551,6 +1011,996 @@ public class StatefulShortestPathMapBasedMovement extends MapBasedMovement imple
 			int ranDom = rn.nextInt(100);
 			return result.get(ranDom);
 		}
+
+		//-----------------------------------------------------------
+		//Case9: Initial State = Entrance | Historic: NO | Lunch Time
+		//-----------------------------------------------------------
+		if (escenario.equals("case9"))
+		{
+			//System.out.println("Size: "+states.size());
+			for (int i=0;i<states.size();i++)
+			{
+				for (int j=0;j<case9[i];j++)
+				{
+					result.add(states.get(i));
+				}
+			}
+			Random rn = new Random();
+			int ranDom = rn.nextInt(100);
+			return result.get(ranDom);
+		}
+
+		//-----------------------------------------------------------
+		//Case10: Initial State = Entrance | Historic: NO | NO Lunch Time
+		//-----------------------------------------------------------
+
+		if (escenario.equals("case10"))
+		{
+			//System.out.println("Size: "+states.size());
+			for (int i=0;i<states.size();i++)
+			{
+				for (int j=0;j<case10[i];j++)
+				{
+					result.add(states.get(i));
+				}
+			}
+			Random rn = new Random();
+			int ranDom = rn.nextInt(100);
+			return result.get(ranDom);
+		}
+
+
+		//-----------------------------------------------------------
+		//Case11: Initial State = Entrance | Historic: YES | Lunch Time
+		//-----------------------------------------------------------
+
+		if (escenario.equals("case11"))
+		{
+			//System.out.println("Size: "+states.size());
+			for (int i=0;i<states.size();i++)
+			{
+				for (int j=0;j<case11[i];j++)
+				{
+					result.add(states.get(i));
+				}
+			}
+			Random rn = new Random();
+			int ranDom = rn.nextInt(100);
+			return result.get(ranDom);
+		}
+
+		//-----------------------------------------------------------
+		//Case12: Initial State = Entrance | Historic: YES | NO Lunch Time
+		//-----------------------------------------------------------
+
+		if (escenario.equals("case12"))
+		{
+			//System.out.println("Size: "+states.size());
+			for (int i=0;i<states.size();i++)
+			{
+				for (int j=0;j<case12[i];j++)
+				{
+					result.add(states.get(i));
+				}
+			}
+			Random rn = new Random();
+			int ranDom = rn.nextInt(100);
+			return result.get(ranDom);
+		}
+
+		//-----------------------------------------------------------
+		//Case13: Initial State = LectureHall | Historic: NO | Lunch Time
+		//-----------------------------------------------------------
+		if (escenario.equals("case13"))
+		{
+			//System.out.println("Size: "+states.size());
+			for (int i=0;i<states.size();i++)
+			{
+				for (int j=0;j<case13[i];j++)
+				{
+					result.add(states.get(i));
+				}
+			}
+			Random rn = new Random();
+			int ranDom = rn.nextInt(100);
+			return result.get(ranDom);
+		}
+
+		//-----------------------------------------------------------
+		//Case14: Initial State = LectureHall | Historic: NO | NO Lunch Time
+		//-----------------------------------------------------------
+
+		if (escenario.equals("case14"))
+		{
+			//System.out.println("Size: "+states.size());
+			for (int i=0;i<states.size();i++)
+			{
+				for (int j=0;j<case14[i];j++)
+				{
+					result.add(states.get(i));
+				}
+			}
+			Random rn = new Random();
+			int ranDom = rn.nextInt(100);
+			return result.get(ranDom);
+		}
+
+
+		//-----------------------------------------------------------
+		//Case15: Initial State = LectureHall | Historic: YES | Lunch Time
+		//-----------------------------------------------------------
+
+		if (escenario.equals("case15"))
+		{
+			//System.out.println("Size: "+states.size());
+			for (int i=0;i<states.size();i++)
+			{
+				for (int j=0;j<case15[i];j++)
+				{
+					result.add(states.get(i));
+				}
+			}
+			Random rn = new Random();
+			int ranDom = rn.nextInt(100);
+			return result.get(ranDom);
+		}
+
+		//-----------------------------------------------------------
+		//Case16: Initial State = LectureHall | Historic: YES | NO Lunch Time
+		//-----------------------------------------------------------
+
+		if (escenario.equals("case16"))
+		{
+			//System.out.println("Size: "+states.size());
+			for (int i=0;i<states.size();i++)
+			{
+				for (int j=0;j<case16[i];j++)
+				{
+					result.add(states.get(i));
+				}
+			}
+			Random rn = new Random();
+			int ranDom = rn.nextInt(100);
+			return result.get(ranDom);
+		}
+
+		//-----------------------------------------------------------
+		//Case17: Initial State = Entrance | Historic: NO | Lunch Time
+		//-----------------------------------------------------------
+		if (escenario.equals("case17"))
+		{
+			//System.out.println("Size: "+states.size());
+			for (int i=0;i<states.size();i++)
+			{
+				for (int j=0;j<case17[i];j++)
+				{
+					result.add(states.get(i));
+				}
+			}
+			Random rn = new Random();
+			int ranDom = rn.nextInt(100);
+			return result.get(ranDom);
+		}
+
+		//-----------------------------------------------------------
+		//Case18: Initial State = Entrance | Historic: NO | NO Lunch Time
+		//-----------------------------------------------------------
+
+		if (escenario.equals("case18"))
+		{
+			//System.out.println("Size: "+states.size());
+			for (int i=0;i<states.size();i++)
+			{
+				for (int j=0;j<case18[i];j++)
+				{
+					result.add(states.get(i));
+				}
+			}
+			Random rn = new Random();
+			int ranDom = rn.nextInt(100);
+			return result.get(ranDom);
+		}
+
+
+		//-----------------------------------------------------------
+		//Case19: Initial State = Entrance | Historic: YES | Lunch Time
+		//-----------------------------------------------------------
+
+		if (escenario.equals("case19"))
+		{
+			//System.out.println("Size: "+states.size());
+			for (int i=0;i<states.size();i++)
+			{
+				for (int j=0;j<case19[i];j++)
+				{
+					result.add(states.get(i));
+				}
+			}
+			Random rn = new Random();
+			int ranDom = rn.nextInt(100);
+			return result.get(ranDom);
+		}
+
+		//-----------------------------------------------------------
+		//Case20: Initial State = Entrance | Historic: YES | NO Lunch Time
+		//-----------------------------------------------------------
+
+		if (escenario.equals("case20"))
+		{
+			//System.out.println("Size: "+states.size());
+			for (int i=0;i<states.size();i++)
+			{
+				for (int j=0;j<case20[i];j++)
+				{
+					result.add(states.get(i));
+				}
+			}
+			Random rn = new Random();
+			int ranDom = rn.nextInt(100);
+			return result.get(ranDom);
+		}
+
+		//-----------------------------------------------------------
+		//Case21: Initial State = LectureHall | Historic: NO | Lunch Time
+		//-----------------------------------------------------------
+		if (escenario.equals("case21"))
+		{
+			//System.out.println("Size: "+states.size());
+			for (int i=0;i<states.size();i++)
+			{
+				for (int j=0;j<case21[i];j++)
+				{
+					result.add(states.get(i));
+				}
+			}
+			Random rn = new Random();
+			int ranDom = rn.nextInt(100);
+			return result.get(ranDom);
+		}
+
+		//-----------------------------------------------------------
+		//Case22: Initial State = LectureHall | Historic: NO | NO Lunch Time
+		//-----------------------------------------------------------
+
+		if (escenario.equals("case22"))
+		{
+			//System.out.println("Size: "+states.size());
+			for (int i=0;i<states.size();i++)
+			{
+				for (int j=0;j<case22[i];j++)
+				{
+					result.add(states.get(i));
+				}
+			}
+			Random rn = new Random();
+			int ranDom = rn.nextInt(100);
+			return result.get(ranDom);
+		}
+
+
+		//-----------------------------------------------------------
+		//Case23: Initial State = LectureHall | Historic: YES | Lunch Time
+		//-----------------------------------------------------------
+
+		if (escenario.equals("case23"))
+		{
+			//System.out.println("Size: "+states.size());
+			for (int i=0;i<states.size();i++)
+			{
+				for (int j=0;j<case23[i];j++)
+				{
+					result.add(states.get(i));
+				}
+			}
+			Random rn = new Random();
+			int ranDom = rn.nextInt(100);
+			return result.get(ranDom);
+		}
+
+		//-----------------------------------------------------------
+		//Case24: Initial State = LectureHall | Historic: YES | NO Lunch Time
+		//-----------------------------------------------------------
+
+		if (escenario.equals("case24"))
+		{
+			//System.out.println("Size: "+states.size());
+			for (int i=0;i<states.size();i++)
+			{
+				for (int j=0;j<case24[i];j++)
+				{
+					result.add(states.get(i));
+				}
+			}
+			Random rn = new Random();
+			int ranDom = rn.nextInt(100);
+			return result.get(ranDom);
+		}
+
+		//-----------------------------------------------------------
+		//Case25: Initial State = Entrance | Historic: NO | Lunch Time
+		//-----------------------------------------------------------
+		if (escenario.equals("case25"))
+		{
+			//System.out.println("Size: "+states.size());
+			for (int i=0;i<states.size();i++)
+			{
+				for (int j=0;j<case25[i];j++)
+				{
+					result.add(states.get(i));
+				}
+			}
+			Random rn = new Random();
+			int ranDom = rn.nextInt(100);
+			return result.get(ranDom);
+		}
+
+		//-----------------------------------------------------------
+		//Case26: Initial State = Entrance | Historic: NO | NO Lunch Time
+		//-----------------------------------------------------------
+
+		if (escenario.equals("case26"))
+		{
+			//System.out.println("Size: "+states.size());
+			for (int i=0;i<states.size();i++)
+			{
+				for (int j=0;j<case26[i];j++)
+				{
+					result.add(states.get(i));
+				}
+			}
+			Random rn = new Random();
+			int ranDom = rn.nextInt(100);
+			return result.get(ranDom);
+		}
+
+
+		//-----------------------------------------------------------
+		//Case27: Initial State = Entrance | Historic: YES | Lunch Time
+		//-----------------------------------------------------------
+
+		if (escenario.equals("case27"))
+		{
+			//System.out.println("Size: "+states.size());
+			for (int i=0;i<states.size();i++)
+			{
+				for (int j=0;j<case27[i];j++)
+				{
+					result.add(states.get(i));
+				}
+			}
+			Random rn = new Random();
+			int ranDom = rn.nextInt(100);
+			return result.get(ranDom);
+		}
+
+		//-----------------------------------------------------------
+		//Case28: Initial State = Entrance | Historic: YES | NO Lunch Time
+		//-----------------------------------------------------------
+
+		if (escenario.equals("case28"))
+		{
+			//System.out.println("Size: "+states.size());
+			for (int i=0;i<states.size();i++)
+			{
+				for (int j=0;j<case28[i];j++)
+				{
+					result.add(states.get(i));
+				}
+			}
+			Random rn = new Random();
+			int ranDom = rn.nextInt(100);
+			return result.get(ranDom);
+		}
+
+		//-----------------------------------------------------------
+		//Case29: Initial State = LectureHall | Historic: NO | Lunch Time
+		//-----------------------------------------------------------
+		if (escenario.equals("case29"))
+		{
+			//System.out.println("Size: "+states.size());
+			for (int i=0;i<states.size();i++)
+			{
+				for (int j=0;j<case29[i];j++)
+				{
+					result.add(states.get(i));
+				}
+			}
+			Random rn = new Random();
+			int ranDom = rn.nextInt(100);
+			return result.get(ranDom);
+		}
+
+		//-----------------------------------------------------------
+		//Case30: Initial State = LectureHall | Historic: NO | NO Lunch Time
+		//-----------------------------------------------------------
+
+		if (escenario.equals("case30"))
+		{
+			//System.out.println("Size: "+states.size());
+			for (int i=0;i<states.size();i++)
+			{
+				for (int j=0;j<case30[i];j++)
+				{
+					result.add(states.get(i));
+				}
+			}
+			Random rn = new Random();
+			int ranDom = rn.nextInt(100);
+			return result.get(ranDom);
+		}
+
+
+		//-----------------------------------------------------------
+		//Case31: Initial State = LectureHall | Historic: YES | Lunch Time
+		//-----------------------------------------------------------
+
+		if (escenario.equals("case31"))
+		{
+			//System.out.println("Size: "+states.size());
+			for (int i=0;i<states.size();i++)
+			{
+				for (int j=0;j<case31[i];j++)
+				{
+					result.add(states.get(i));
+				}
+			}
+			Random rn = new Random();
+			int ranDom = rn.nextInt(100);
+			return result.get(ranDom);
+		}
+
+		//-----------------------------------------------------------
+		//Case32: Initial State = LectureHall | Historic: YES | NO Lunch Time
+		//-----------------------------------------------------------
+
+		if (escenario.equals("case32"))
+		{
+			//System.out.println("Size: "+states.size());
+			for (int i=0;i<states.size();i++)
+			{
+				for (int j=0;j<case32[i];j++)
+				{
+					result.add(states.get(i));
+				}
+			}
+			Random rn = new Random();
+			int ranDom = rn.nextInt(100);
+			return result.get(ranDom);
+		}
+
+		//-----------------------------------------------------------
+		//Case33: Initial State = Entrance | Historic: NO | Lunch Time
+		//-----------------------------------------------------------
+		if (escenario.equals("case33"))
+		{
+			//System.out.println("Size: "+states.size());
+			for (int i=0;i<states.size();i++)
+			{
+				for (int j=0;j<case33[i];j++)
+				{
+					result.add(states.get(i));
+				}
+			}
+			Random rn = new Random();
+			int ranDom = rn.nextInt(100);
+			return result.get(ranDom);
+		}
+
+		//-----------------------------------------------------------
+		//Case34: Initial State = Entrance | Historic: NO | NO Lunch Time
+		//-----------------------------------------------------------
+
+		if (escenario.equals("case34"))
+		{
+			//System.out.println("Size: "+states.size());
+			for (int i=0;i<states.size();i++)
+			{
+				for (int j=0;j<case34[i];j++)
+				{
+					result.add(states.get(i));
+				}
+			}
+			Random rn = new Random();
+			int ranDom = rn.nextInt(100);
+			return result.get(ranDom);
+		}
+
+
+		//-----------------------------------------------------------
+		//Case35: Initial State = Entrance | Historic: YES | Lunch Time
+		//-----------------------------------------------------------
+
+		if (escenario.equals("case35"))
+		{
+			//System.out.println("Size: "+states.size());
+			for (int i=0;i<states.size();i++)
+			{
+				for (int j=0;j<case35[i];j++)
+				{
+					result.add(states.get(i));
+				}
+			}
+			Random rn = new Random();
+			int ranDom = rn.nextInt(100);
+			return result.get(ranDom);
+		}
+
+		//-----------------------------------------------------------
+		//Case36: Initial State = Entrance | Historic: YES | NO Lunch Time
+		//-----------------------------------------------------------
+
+		if (escenario.equals("case36"))
+		{
+			//System.out.println("Size: "+states.size());
+			for (int i=0;i<states.size();i++)
+			{
+				for (int j=0;j<case36[i];j++)
+				{
+					result.add(states.get(i));
+				}
+			}
+			Random rn = new Random();
+			int ranDom = rn.nextInt(100);
+			return result.get(ranDom);
+		}
+
+		//-----------------------------------------------------------
+		//Case37: Initial State = LectureHall | Historic: NO | Lunch Time
+		//-----------------------------------------------------------
+		if (escenario.equals("case37"))
+		{
+			//System.out.println("Size: "+states.size());
+			for (int i=0;i<states.size();i++)
+			{
+				for (int j=0;j<case37[i];j++)
+				{
+					result.add(states.get(i));
+				}
+			}
+			Random rn = new Random();
+			int ranDom = rn.nextInt(100);
+			return result.get(ranDom);
+		}
+
+		//-----------------------------------------------------------
+		//Case38: Initial State = LectureHall | Historic: NO | NO Lunch Time
+		//-----------------------------------------------------------
+
+		if (escenario.equals("case38"))
+		{
+			//System.out.println("Size: "+states.size());
+			for (int i=0;i<states.size();i++)
+			{
+				for (int j=0;j<case38[i];j++)
+				{
+					result.add(states.get(i));
+				}
+			}
+			Random rn = new Random();
+			int ranDom = rn.nextInt(100);
+			return result.get(ranDom);
+		}
+
+
+		//-----------------------------------------------------------
+		//Case39: Initial State = LectureHall | Historic: YES | Lunch Time
+		//-----------------------------------------------------------
+
+		if (escenario.equals("case39"))
+		{
+			//System.out.println("Size: "+states.size());
+			for (int i=0;i<states.size();i++)
+			{
+				for (int j=0;j<case39[i];j++)
+				{
+					result.add(states.get(i));
+				}
+			}
+			Random rn = new Random();
+			int ranDom = rn.nextInt(100);
+			return result.get(ranDom);
+		}
+
+		//-----------------------------------------------------------
+		//Case40: Initial State = LectureHall | Historic: YES | NO Lunch Time
+		//-----------------------------------------------------------
+
+		if (escenario.equals("case40"))
+		{
+			//System.out.println("Size: "+states.size());
+			for (int i=0;i<states.size();i++)
+			{
+				for (int j=0;j<case40[i];j++)
+				{
+					result.add(states.get(i));
+				}
+			}
+			Random rn = new Random();
+			int ranDom = rn.nextInt(100);
+			return result.get(ranDom);
+		}
+
+		//-----------------------------------------------------------
+		//Case41: Initial State = Entrance | Historic: NO | Lunch Time
+		//-----------------------------------------------------------
+		if (escenario.equals("case41"))
+		{
+			//System.out.println("Size: "+states.size());
+			for (int i=0;i<states.size();i++)
+			{
+				for (int j=0;j<case41[i];j++)
+				{
+					result.add(states.get(i));
+				}
+			}
+			Random rn = new Random();
+			int ranDom = rn.nextInt(100);
+			return result.get(ranDom);
+		}
+
+		//-----------------------------------------------------------
+		//Case42: Initial State = Entrance | Historic: NO | NO Lunch Time
+		//-----------------------------------------------------------
+
+		if (escenario.equals("case42"))
+		{
+			//System.out.println("Size: "+states.size());
+			for (int i=0;i<states.size();i++)
+			{
+				for (int j=0;j<case42[i];j++)
+				{
+					result.add(states.get(i));
+				}
+			}
+			Random rn = new Random();
+			int ranDom = rn.nextInt(100);
+			return result.get(ranDom);
+		}
+
+
+		//-----------------------------------------------------------
+		//Case43: Initial State = Entrance | Historic: YES | Lunch Time
+		//-----------------------------------------------------------
+
+		if (escenario.equals("case43"))
+		{
+			//System.out.println("Size: "+states.size());
+			for (int i=0;i<states.size();i++)
+			{
+				for (int j=0;j<case43[i];j++)
+				{
+					result.add(states.get(i));
+				}
+			}
+			Random rn = new Random();
+			int ranDom = rn.nextInt(100);
+			return result.get(ranDom);
+		}
+
+		//-----------------------------------------------------------
+		//Case44: Initial State = Entrance | Historic: YES | NO Lunch Time
+		//-----------------------------------------------------------
+
+		if (escenario.equals("case44"))
+		{
+			//System.out.println("Size: "+states.size());
+			for (int i=0;i<states.size();i++)
+			{
+				for (int j=0;j<case44[i];j++)
+				{
+					result.add(states.get(i));
+				}
+			}
+			Random rn = new Random();
+			int ranDom = rn.nextInt(100);
+			return result.get(ranDom);
+		}
+
+		//-----------------------------------------------------------
+		//Case45: Initial State = LectureHall | Historic: NO | Lunch Time
+		//-----------------------------------------------------------
+		if (escenario.equals("case45"))
+		{
+			//System.out.println("Size: "+states.size());
+			for (int i=0;i<states.size();i++)
+			{
+				for (int j=0;j<case45[i];j++)
+				{
+					result.add(states.get(i));
+				}
+			}
+			Random rn = new Random();
+			int ranDom = rn.nextInt(100);
+			return result.get(ranDom);
+		}
+
+		//-----------------------------------------------------------
+		//Case46: Initial State = LectureHall | Historic: NO | NO Lunch Time
+		//-----------------------------------------------------------
+
+		if (escenario.equals("case46"))
+		{
+			//System.out.println("Size: "+states.size());
+			for (int i=0;i<states.size();i++)
+			{
+				for (int j=0;j<case46[i];j++)
+				{
+					result.add(states.get(i));
+				}
+			}
+			Random rn = new Random();
+			int ranDom = rn.nextInt(100);
+			return result.get(ranDom);
+		}
+
+
+		//-----------------------------------------------------------
+		//Case47: Initial State = LectureHall | Historic: YES | Lunch Time
+		//-----------------------------------------------------------
+
+		if (escenario.equals("case47"))
+		{
+			//System.out.println("Size: "+states.size());
+			for (int i=0;i<states.size();i++)
+			{
+				for (int j=0;j<case47[i];j++)
+				{
+					result.add(states.get(i));
+				}
+			}
+			Random rn = new Random();
+			int ranDom = rn.nextInt(100);
+			return result.get(ranDom);
+		}
+
+		//-----------------------------------------------------------
+		//Case48: Initial State = LectureHall | Historic: YES | NO Lunch Time
+		//-----------------------------------------------------------
+
+		if (escenario.equals("case48"))
+		{
+			//System.out.println("Size: "+states.size());
+			for (int i=0;i<states.size();i++)
+			{
+				for (int j=0;j<case48[i];j++)
+				{
+					result.add(states.get(i));
+				}
+			}
+			Random rn = new Random();
+			int ranDom = rn.nextInt(100);
+			return result.get(ranDom);
+		}
+
+		//-----------------------------------------------------------
+		//Case49: Initial State = Entrance | Historic: NO | Lunch Time
+		//-----------------------------------------------------------
+		if (escenario.equals("case49"))
+		{
+			//System.out.println("Size: "+states.size());
+			for (int i=0;i<states.size();i++)
+			{
+				for (int j=0;j<case49[i];j++)
+				{
+					result.add(states.get(i));
+				}
+			}
+			Random rn = new Random();
+			int ranDom = rn.nextInt(100);
+			return result.get(ranDom);
+		}
+
+		//-----------------------------------------------------------
+		//Case50: Initial State = Entrance | Historic: NO | NO Lunch Time
+		//-----------------------------------------------------------
+
+		if (escenario.equals("case50"))
+		{
+			//System.out.println("Size: "+states.size());
+			for (int i=0;i<states.size();i++)
+			{
+				for (int j=0;j<case50[i];j++)
+				{
+					result.add(states.get(i));
+				}
+			}
+			Random rn = new Random();
+			int ranDom = rn.nextInt(100);
+			return result.get(ranDom);
+		}
+
+
+		//-----------------------------------------------------------
+		//Case51: Initial State = Entrance | Historic: YES | Lunch Time
+		//-----------------------------------------------------------
+
+		if (escenario.equals("case51"))
+		{
+			//System.out.println("Size: "+states.size());
+			for (int i=0;i<states.size();i++)
+			{
+				for (int j=0;j<case51[i];j++)
+				{
+					result.add(states.get(i));
+				}
+			}
+			Random rn = new Random();
+			int ranDom = rn.nextInt(100);
+			return result.get(ranDom);
+		}
+
+		//-----------------------------------------------------------
+		//Case52: Initial State = Entrance | Historic: YES | NO Lunch Time
+		//-----------------------------------------------------------
+
+		if (escenario.equals("case52"))
+		{
+			//System.out.println("Size: "+states.size());
+			for (int i=0;i<states.size();i++)
+			{
+				for (int j=0;j<case52[i];j++)
+				{
+					result.add(states.get(i));
+				}
+			}
+			Random rn = new Random();
+			int ranDom = rn.nextInt(100);
+			return result.get(ranDom);
+		}
+
+		//-----------------------------------------------------------
+		//Case53: Initial State = LectureHall | Historic: NO | Lunch Time
+		//-----------------------------------------------------------
+		if (escenario.equals("case53"))
+		{
+			//System.out.println("Size: "+states.size());
+			for (int i=0;i<states.size();i++)
+			{
+				for (int j=0;j<case53[i];j++)
+				{
+					result.add(states.get(i));
+				}
+			}
+			Random rn = new Random();
+			int ranDom = rn.nextInt(100);
+			return result.get(ranDom);
+		}
+
+		//-----------------------------------------------------------
+		//Case54: Initial State = LectureHall | Historic: NO | NO Lunch Time
+		//-----------------------------------------------------------
+
+		if (escenario.equals("case54"))
+		{
+			//System.out.println("Size: "+states.size());
+			for (int i=0;i<states.size();i++)
+			{
+				for (int j=0;j<case54[i];j++)
+				{
+					result.add(states.get(i));
+				}
+			}
+			Random rn = new Random();
+			int ranDom = rn.nextInt(100);
+			return result.get(ranDom);
+		}
+
+
+		//-----------------------------------------------------------
+		//Case55: Initial State = LectureHall | Historic: YES | Lunch Time
+		//-----------------------------------------------------------
+
+		if (escenario.equals("case55"))
+		{
+			//System.out.println("Size: "+states.size());
+			for (int i=0;i<states.size();i++)
+			{
+				for (int j=0;j<case55[i];j++)
+				{
+					result.add(states.get(i));
+				}
+			}
+			Random rn = new Random();
+			int ranDom = rn.nextInt(100);
+			return result.get(ranDom);
+		}
+
+		//-----------------------------------------------------------
+		//Case56: Initial State = LectureHall | Historic: YES | NO Lunch Time
+		//-----------------------------------------------------------
+
+		if (escenario.equals("case56"))
+		{
+			//System.out.println("Size: "+states.size());
+			for (int i=0;i<states.size();i++)
+			{
+				for (int j=0;j<case56[i];j++)
+				{
+					result.add(states.get(i));
+				}
+			}
+			Random rn = new Random();
+			int ranDom = rn.nextInt(100);
+			return result.get(ranDom);
+		}
+
+		//-----------------------------------------------------------
+		//Case57: Initial State = Entrance | Historic: NO | Lunch Time
+		//-----------------------------------------------------------
+		if (escenario.equals("case57"))
+		{
+			//System.out.println("Size: "+states.size());
+			for (int i=0;i<states.size();i++)
+			{
+				for (int j=0;j<case57[i];j++)
+				{
+					result.add(states.get(i));
+				}
+			}
+			Random rn = new Random();
+			int ranDom = rn.nextInt(100);
+			return result.get(ranDom);
+		}
+
+		//-----------------------------------------------------------
+		//Case58: Initial State = Entrance | Historic: NO | NO Lunch Time
+		//-----------------------------------------------------------
+
+		if (escenario.equals("case58"))
+		{
+			//System.out.println("Size: "+states.size());
+			for (int i=0;i<states.size();i++)
+			{
+				for (int j=0;j<case58[i];j++)
+				{
+					result.add(states.get(i));
+				}
+			}
+			Random rn = new Random();
+			int ranDom = rn.nextInt(100);
+			return result.get(ranDom);
+		}
+
+
+		//-----------------------------------------------------------
+		//Case59: Initial State = Entrance | Historic: YES | Lunch Time
+		//-----------------------------------------------------------
+
+		if (escenario.equals("case59"))
+		{
+			//System.out.println("Size: "+states.size());
+			for (int i=0;i<states.size();i++)
+			{
+				for (int j=0;j<case59[i];j++)
+				{
+					result.add(states.get(i));
+				}
+			}
+			Random rn = new Random();
+			int ranDom = rn.nextInt(100);
+			return result.get(ranDom);
+		}
+
+		//-----------------------------------------------------------
+		//Case60: Initial State = Entrance | Historic: YES | NO Lunch Time
+		//-----------------------------------------------------------
+
+		if (escenario.equals("case60"))
+		{
+			//System.out.println("Size: "+states.size());
+			for (int i=0;i<states.size();i++)
+			{
+				for (int j=0;j<case60[i];j++)
+				{
+					result.add(states.get(i));
+				}
+			}
+			Random rn = new Random();
+			int ranDom = rn.nextInt(100);
+			return result.get(ranDom);
+		}
+
+
 
 		return null;
 	}
