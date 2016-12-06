@@ -253,7 +253,7 @@ public class StatefulShortestPathMapBasedMovement extends MapBasedMovement imple
 		if(state == State.Enterance)
 		{
 			//The node has not been in any other place before
-			if(hostHistory.size() == 0)
+			if(hostHistory.size() < 3)
 				{
 					//It is lunch Time
 					if (SimClock.getTime()>700 && SimClock.getTime()<900)
@@ -282,7 +282,8 @@ public class StatefulShortestPathMapBasedMovement extends MapBasedMovement imple
 				}
 		} else if(state == LectureHall1)
 				{
-					if(hostHistory.size() == 0)
+					//The node has not been in any other place before
+					if(hostHistory.size() < 3)
 					{
 						//It is lunch Time
 						if (SimClock.getTime()>700 && SimClock.getTime()<900)
@@ -314,7 +315,7 @@ public class StatefulShortestPathMapBasedMovement extends MapBasedMovement imple
 		if(state == State.LectureHall2)
 		{
 			//The node has not been in any other place before
-			if(hostHistory.size() == 0)
+			if(hostHistory.size() < 3)
 			{
 				//It is lunch Time
 				if (SimClock.getTime()>700 && SimClock.getTime()<900)
@@ -343,7 +344,8 @@ public class StatefulShortestPathMapBasedMovement extends MapBasedMovement imple
 			}
 		} else if(state == LectureHall3)
 		{
-			if(hostHistory.size() == 0)
+			//The node has not been in any other place before
+			if(hostHistory.size() < 3)
 			{
 				//It is lunch Time
 				if (SimClock.getTime()>700 && SimClock.getTime()<900)
@@ -374,7 +376,8 @@ public class StatefulShortestPathMapBasedMovement extends MapBasedMovement imple
 
 		else if(state == SeminarHall1)
 		{
-			if(hostHistory.size() == 0)
+			//The node has not been in any other place before
+			if(hostHistory.size() < 3)
 			{
 				//It is lunch Time
 				if (SimClock.getTime()>700 && SimClock.getTime()<900)
@@ -405,7 +408,8 @@ public class StatefulShortestPathMapBasedMovement extends MapBasedMovement imple
 
 		else if(state == SeminarHall2)
 		{
-			if(hostHistory.size() == 0)
+			//The node has not been in any other place before
+			if(hostHistory.size() < 3)
 			{
 				//It is lunch Time
 				if (SimClock.getTime()>700 && SimClock.getTime()<900)
@@ -436,7 +440,8 @@ public class StatefulShortestPathMapBasedMovement extends MapBasedMovement imple
 
 		else if(state == SeminarHall3)
 		{
-			if(hostHistory.size() == 0)
+			//The node has not been in any other place before
+			if(hostHistory.size() < 3)
 			{
 				//It is lunch Time
 				if (SimClock.getTime()>700 && SimClock.getTime()<900)
@@ -467,7 +472,8 @@ public class StatefulShortestPathMapBasedMovement extends MapBasedMovement imple
 
 		else if(state == SeminarHall4)
 		{
-			if(hostHistory.size() == 0)
+			//The node has not been in any other place before
+			if(hostHistory.size() < 3)
 			{
 				//It is lunch Time
 				if (SimClock.getTime()>700 && SimClock.getTime()<900)
@@ -498,7 +504,8 @@ public class StatefulShortestPathMapBasedMovement extends MapBasedMovement imple
 
 		else if(state == SeminarHall5)
 		{
-			if(hostHistory.size() == 0)
+			//The node has not been in any other place before
+			if(hostHistory.size() < 3)
 			{
 				//It is lunch Time
 				if (SimClock.getTime()>700 && SimClock.getTime()<900)
@@ -530,7 +537,8 @@ public class StatefulShortestPathMapBasedMovement extends MapBasedMovement imple
 
 		else if(state == MainHall1)
 		{
-			if(hostHistory.size() == 0)
+			//The node has not been in any other place before
+			if(hostHistory.size() < 3)
 			{
 				//It is lunch Time
 				if (SimClock.getTime()>700 && SimClock.getTime()<900)
@@ -561,7 +569,8 @@ public class StatefulShortestPathMapBasedMovement extends MapBasedMovement imple
 
 		else if(state == MainHall2)
 		{
-			if(hostHistory.size() == 0)
+			//The node has not been in any other place before
+			if(hostHistory.size() < 3)
 			{
 				//It is lunch Time
 				if (SimClock.getTime()>700 && SimClock.getTime()<900)
@@ -592,7 +601,8 @@ public class StatefulShortestPathMapBasedMovement extends MapBasedMovement imple
 
 		else if(state == MainHall3)
 		{
-			if(hostHistory.size() == 0)
+			//The node has not been in any other place before
+			if(hostHistory.size() < 3)
 			{
 				//It is lunch Time
 				if (SimClock.getTime()>700 && SimClock.getTime()<900)
@@ -623,7 +633,8 @@ public class StatefulShortestPathMapBasedMovement extends MapBasedMovement imple
 
 		else if(state == Mensa)
 		{
-			if(hostHistory.size() == 0)
+			//The node has not been in any other place before
+			if(hostHistory.size() < 3)
 			{
 				//It is lunch Time
 				if (SimClock.getTime()>700 && SimClock.getTime()<900)
@@ -655,7 +666,8 @@ public class StatefulShortestPathMapBasedMovement extends MapBasedMovement imple
 
 		else if(state == ComputerHall)
 		{
-			if(hostHistory.size() == 0)
+			//The node has not been in any other place before
+			if(hostHistory.size() < 3)
 			{
 				//It is lunch Time
 				if (SimClock.getTime()>700 && SimClock.getTime()<900)
@@ -686,7 +698,8 @@ public class StatefulShortestPathMapBasedMovement extends MapBasedMovement imple
 
 		else if(state == ComputerHall)
 		{
-			if(hostHistory.size() == 0)
+			//The node has not been in any other place before
+			if(hostHistory.size() < 3)
 			{
 				//It is lunch Time
 				if (SimClock.getTime()>700 && SimClock.getTime()<900)
