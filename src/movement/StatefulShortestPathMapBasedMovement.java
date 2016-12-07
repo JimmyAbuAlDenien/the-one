@@ -63,7 +63,7 @@ public class StatefulShortestPathMapBasedMovement extends MapBasedMovement imple
 		List<MapNode> allNodes = getMap().getNodes();
 
 		for (MapNode destination : allNodes) {
-			if(destination.getLocation().toString().equals(state.coord.toString())){
+			if(destination.getLocation().toString().equals(this.state.coord.toString())){
 				lastMapNode = destination;
 				return destination.getLocation().clone();
 			}
@@ -77,7 +77,7 @@ public class StatefulShortestPathMapBasedMovement extends MapBasedMovement imple
 		// Get new state
 		this.state = this.state.getNextState((SimClock.getTime()>700 && SimClock.getTime()<900), hostHistory.size() >3);
 
-		setWaitTime(this.state.currentState);
+		setWaitTime(this.state);
 
 		Path p = new Path(generateSpeed());
 		MapNode to = this.state.getMapNode();
@@ -126,19 +126,10 @@ public class StatefulShortestPathMapBasedMovement extends MapBasedMovement imple
 
 
 
-	private void setWaitTime(MIState.State state) {
-		maxWaitTime = 150;
-		minWaitTime = 50;
-
-		// TODO: add wait time for all states
-		if(state == MIState.State.Mensa)
-		{
-			maxWaitTime = 200;
-			minWaitTime = 50;
-		} else if(state == MIState.State.LectureHall1)
-		{
-			maxWaitTime = 500;
-			minWaitTime = 300;
+	private void setWaitTime(MIState state) {
+		if(state != null) {
+			maxWaitTime = state.maxWaitTime;
+			minWaitTime = state.minWaitTime;
 		}
 	}
 	//==========================================================================//
