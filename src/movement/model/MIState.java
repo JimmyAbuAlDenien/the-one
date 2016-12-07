@@ -1,14 +1,18 @@
 package movement.model;
 
 import core.Coord;
+import movement.map.MapNode;
 
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Random;
 
 /**
  * Created by jimmy on 12/6/16.
  */
 public class MIState {
+
+    public static List<MapNode> allNodes;
 
     public State currentState;
 
@@ -65,6 +69,20 @@ public class MIState {
             }
         }
 
+        return null;
+    }
+
+    public MapNode getMapNode() {
+        if(currentState == null) {
+            System.out.print("State is null");
+            return null;
+        }
+
+        for (MapNode destination : allNodes) {
+            if(destination.getLocation().toString().equals(this.coord.toString())){
+                return destination;
+            }
+        }
         return null;
     }
 

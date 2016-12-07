@@ -42,6 +42,9 @@ public class StatefulShortestPathMapBasedMovement extends MapBasedMovement imple
 		this.pathFinder = new DijkstraPathFinder(getOkMapNodeTypes());
 		this.pois = new PointsOfInterest(getMap(), getOkMapNodeTypes(),
 				settings, rng);
+
+		// Set all nodes
+		MIState.allNodes = getMap().getNodes();
 	}
 
 	/**
@@ -77,7 +80,7 @@ public class StatefulShortestPathMapBasedMovement extends MapBasedMovement imple
 		setWaitTime(this.state.currentState);
 
 		Path p = new Path(generateSpeed());
-		MapNode to = selectNextStateDestination();
+		MapNode to = this.state.getMapNode();
 
 		List<MapNode> nodePath = pathFinder.getShortestPath(lastMapNode, to);
 		//List<MapNode> nodePath = pathFinder.getPathToDestination(lastMapNode, to, getMap().getNodes());
@@ -120,22 +123,6 @@ public class StatefulShortestPathMapBasedMovement extends MapBasedMovement imple
 	// Main Hall 3: 257.52,223.94
 
 	// Computer Hall: 667.17,208.08
-
-	public MapNode selectNextStateDestination() {
-		List<MapNode> allNodes = getMap().getNodes();
-
-		if(state == null) {
-			System.out.print("State is null");
-			return lastMapNode;
-		}
-
-		for (MapNode destination : allNodes) {
-			if(destination.getLocation().toString().equals(this.state.coord.toString())){
-				return destination;
-			}
-		}
-		return null;
-	}
 
 	private void increaseStateCapacity(MIState.State state) {
 		Boolean found = false;
