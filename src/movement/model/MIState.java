@@ -203,7 +203,7 @@ public class MIState {
         int[] case3 = {5,5,5,3,3,3,3,3,2,2,2,50,10,3,3};
         int[] case4 = {5,5,5,3,3,3,3,3,5,5,5,10,15,15,15};
 
-        MIState lectureHall1 = new MIState(MIState.State.LectureHall1, case1, case2,case3, case4, new Coord(987.70,343.45), 200, 200, 500);
+        MIState lectureHall1 = new MIState(MIState.State.LectureHall1, case1, case2,case3, case4, new Coord(987.70,343.45), 200, 500, 500);
         systemStates.add(lectureHall1);
 
         int[] case5 = {2,2,2,2,2,2,2,2,5,5,5,40,20,5,5};
@@ -211,7 +211,7 @@ public class MIState {
         int[] case7 = {3,3,3,2,2,2,2,2,7,7,7,30,25,3,3};
         int[] case8 = {5,5,5,3,3,3,3,3,5,5,5,10,15,15,15};
 
-        MIState lectureHall2 = new MIState(MIState.State.LectureHall2, case5, case6,case7, case8, new Coord(707.16,447.99), 150, 200, 500);
+        MIState lectureHall2 = new MIState(MIState.State.LectureHall2, case5, case6,case7, case8, new Coord(707.16,447.99), 150, 500, 500);
         systemStates.add(lectureHall2);
 
         int[] case9 = {2,2,2,2,2,2,2,2,5,5,5,40,20,5,5};
@@ -219,7 +219,7 @@ public class MIState {
         int[] case11 = {3,3,3,2,2,2,2,2,7,7,7,30,25,3,3};
         int[] case12 = {5,5,5,3,3,3,3,3,5,5,5,10,15,15,15};
 
-        MIState lectureHall3 = new MIState(MIState.State.LectureHall3, case9, case10,case11, case12, new Coord(860.44,495.73), 100, 200, 500);
+        MIState lectureHall3 = new MIState(MIState.State.LectureHall3, case9, case10,case11, case12, new Coord(860.44,495.73), 100, 500, 500);
         systemStates.add(lectureHall3);
 
         int[] case13 = {2,2,2,2,2,2,2,2,5,5,5,40,20,5,5};
@@ -227,7 +227,7 @@ public class MIState {
         int[] case15 = {3,3,3,2,2,2,2,2,7,7,7,30,25,3,3};
         int[] case16 = {5,5,5,3,3,3,3,3,5,5,5,10,15,15,15};
 
-        MIState seminarHall1 = new MIState(MIState.State.SeminarHall1, case13, case14,case15, case16, new Coord(120.56,0.00), 50, 200, 500);
+        MIState seminarHall1 = new MIState(MIState.State.SeminarHall1, case13, case14,case15, case16, new Coord(120.56,0.00), 50, 500, 500);
         systemStates.add(seminarHall1);
 
         int[] case17 = {2,2,2,2,2,2,2,2,5,5,5,40,20,5,5};
@@ -235,7 +235,7 @@ public class MIState {
         int[] case19 = {3,3,3,2,2,2,2,2,7,7,7,30,25,3,3};
         int[] case20 = {5,5,5,3,3,3,3,3,5,5,5,10,15,15,15};
 
-        MIState seminarHall2 = new MIState(MIState.State.SeminarHall2, case17, case18,case19, case20, new Coord(637.79,511.05), 50, 200, 500);
+        MIState seminarHall2 = new MIState(MIState.State.SeminarHall2, case17, case18,case19, case20, new Coord(637.79,511.05), 50, 500, 500);
         systemStates.add(seminarHall2);
 
         int[] case21 = {2,2,2,2,2,2,2,2,5,5,5,40,20,5,5};
@@ -243,7 +243,7 @@ public class MIState {
         int[] case23 = {3,3,3,2,2,2,2,2,7,7,7,30,25,3,3};
         int[] case24 = {5,5,5,3,3,3,3,3,5,5,5,10,15,15,15};
 
-        MIState seminarHall3 = new MIState(MIState.State.SeminarHall3, case21, case22,case23, case24, new Coord(481.63,193.80), 50, 200, 500);
+        MIState seminarHall3 = new MIState(MIState.State.SeminarHall3, case21, case22,case23, case24, new Coord(481.63,193.80), 50, 500, 500);
         systemStates.add(seminarHall3);
 
         int[] case25 = {2,2,2,2,2,2,2,2,5,5,5,40,20,5,5};
@@ -251,7 +251,7 @@ public class MIState {
         int[] case27 = {3,3,3,2,2,2,2,2,7,7,7,30,25,3,3};
         int[] case28 = {5,5,5,3,3,3,3,3,5,5,5,10,15,15,15};
 
-        MIState seminarHall4 = new MIState(MIState.State.SeminarHall4, case25, case26,case27, case28, new Coord(278.89,157.64), 50, 200, 500);
+        MIState seminarHall4 = new MIState(MIState.State.SeminarHall4, case25, case26,case27, case28, new Coord(278.89,157.64), 50, 500, 500);
         systemStates.add(seminarHall4);
 
         int[] case29 = {2,2,2,2,2,2,2,2,5,5,5,40,20,5,5};
@@ -259,7 +259,7 @@ public class MIState {
         int[] case31 = {3,3,3,2,2,2,2,2,7,7,7,30,25,3,3};
         int[] case32 = {5,5,5,3,3,3,3,3,5,5,5,10,15,15,15};
 
-        MIState seminarHall5 = new MIState(MIState.State.SeminarHall5, case29, case30,case31, case32, new Coord(149.85,135.00), 50, 200, 500);
+        MIState seminarHall5 = new MIState(MIState.State.SeminarHall5, case29, case30,case31, case32, new Coord(149.85,135.00), 50, 500, 500);
         systemStates.add(seminarHall5);
 
         int[] case33 = {2,2,2,2,2,2,2,2,5,5,5,40,20,5,5};

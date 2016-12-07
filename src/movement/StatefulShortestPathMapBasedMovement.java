@@ -75,7 +75,8 @@ public class StatefulShortestPathMapBasedMovement extends MapBasedMovement imple
 	@Override
 	public Path getPath() {
 		// Get new state
-		this.state = this.state.getNextState((SimClock.getTime()>700 && SimClock.getTime()<900), hostHistory.size() >3);
+		MIState tmpState = this.state.getNextState((SimClock.getTime()>700 && SimClock.getTime()<900), hostHistory.size() >3);
+		this.state = tmpState != null ? tmpState : this.state;
 
 		setWaitTime(this.state);
 
