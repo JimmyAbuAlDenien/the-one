@@ -29,7 +29,7 @@ public class StatefulShortestPathMapBasedMovement extends MapBasedMovement imple
 	private PointsOfInterest pois;
 
 	private MIState state = MIState.getStateByName(MIState.State.Enterance);
-	public static List<Tuple<MIState.State, Integer>> stateCapacity = new ArrayList<>();
+
 	private List<MIState.State> hostHistory = new ArrayList<>();
 	//==========================================================================//
 
@@ -124,44 +124,7 @@ public class StatefulShortestPathMapBasedMovement extends MapBasedMovement imple
 
 	// Computer Hall: 667.17,208.08
 
-	private void increaseStateCapacity(MIState.State state) {
-		Boolean found = false;
 
-		for (Tuple<MIState.State, Integer> updatedState : stateCapacity) {
-			if(updatedState.getKey() == state) {
-				Tuple<MIState.State, Integer> newState = new Tuple<MIState.State, Integer>(state, updatedState.getValue() + 1);
-				stateCapacity.remove(updatedState);
-				stateCapacity.add(newState);
-				found = true;
-				break;
-			}
-		}
-
-		if(!found) {
-			stateCapacity.add(new Tuple<MIState.State, Integer>(state, 1));
-		}
-	}
-
-	private void decreaseStateCapacity(MIState.State state) {
-		for (Tuple<MIState.State, Integer> updatedState : stateCapacity) {
-			if(updatedState.getKey() == state) {
-				Integer val = (updatedState.getValue() > 0)? updatedState.getValue()-1 : 0;
-				Tuple<MIState.State, Integer> newState = new Tuple<MIState.State, Integer>(state, val);
-				stateCapacity.remove(updatedState);
-				stateCapacity.add(newState);
-				break;
-			}
-		}
-	}
-
-	private Integer getStateCapacity(MIState.State state) {
-		for (Tuple<MIState.State, Integer> updatedState : stateCapacity) {
-			if(updatedState.getKey() == state) {
-				return updatedState.getValue();
-			}
-		}
-		return 0;
-	}
 
 	private void setWaitTime(MIState.State state) {
 		maxWaitTime = 150;
