@@ -10,8 +10,7 @@ import core.SimClock;
 import movement.map.DijkstraPathFinder;
 import movement.map.MapNode;
 import movement.map.PointsOfInterest;
-import movement.model.MIState;
-import util.Tuple;
+import movement.model.MasterStudentState;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,9 +27,9 @@ public class StatefulShortestPathMapBasedMovement extends MapBasedMovement imple
 	/** Points Of Interest handler */
 	private PointsOfInterest pois;
 
-	private MIState state = MIState.getStateByName(MIState.State.Enterance);
+	private MasterStudentState state = MasterStudentState.getStateByName(MasterStudentState.State.Enterance);
 
-	private List<MIState.State> hostHistory = new ArrayList<>();
+	private List<MasterStudentState.State> hostHistory = new ArrayList<>();
 	//==========================================================================//
 
 	/**
@@ -44,7 +43,7 @@ public class StatefulShortestPathMapBasedMovement extends MapBasedMovement imple
 				settings, rng);
 
 		// Set all nodes
-		MIState.allNodes = getMap().getNodes();
+		MasterStudentState.allNodes = getMap().getNodes();
 	}
 
 	/**
@@ -75,7 +74,7 @@ public class StatefulShortestPathMapBasedMovement extends MapBasedMovement imple
 	@Override
 	public Path getPath() {
 		// Get new state
-		MIState tmpState = this.state.getNextState((SimClock.getTime()>700 && SimClock.getTime()<900), hostHistory.size() >3);
+		MasterStudentState tmpState = this.state.getNextState((SimClock.getTime()>700 && SimClock.getTime()<900), hostHistory.size() >3);
 		this.state = tmpState != null ? tmpState : this.state;
 
 		setWaitTime(this.state);
@@ -127,7 +126,7 @@ public class StatefulShortestPathMapBasedMovement extends MapBasedMovement imple
 
 
 
-	private void setWaitTime(MIState state) {
+	private void setWaitTime(MasterStudentState state) {
 		if(state != null) {
 			maxWaitTime = state.maxWaitTime;
 			minWaitTime = state.minWaitTime;
