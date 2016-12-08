@@ -10,6 +10,7 @@ import core.SimClock;
 import movement.map.DijkstraPathFinder;
 import movement.map.MapNode;
 import movement.map.PointsOfInterest;
+import movement.model.MINodeState;
 import movement.model.MasterStudentState;
 
 import java.util.ArrayList;
@@ -27,9 +28,9 @@ public class StatefulShortestPathMapBasedMovement extends MapBasedMovement imple
 	/** Points Of Interest handler */
 	private PointsOfInterest pois;
 
-	private MasterStudentState state;
+	private MINodeState state;
 
-	private List<MasterStudentState.State> hostHistory = new ArrayList<>();
+	private List<MINodeState.State> hostHistory = new ArrayList<>();
 	//==========================================================================//
 
 	/**
@@ -55,7 +56,7 @@ public class StatefulShortestPathMapBasedMovement extends MapBasedMovement imple
 		super(mbm);
 		this.pathFinder = mbm.pathFinder;
 		this.pois = mbm.pois;
-		this.state = new MasterStudentState(MasterStudentState.State.Enterance);
+		this.state = new MasterStudentState(MINodeState.State.Enterance);
 	}
 
 	@Override
@@ -76,7 +77,7 @@ public class StatefulShortestPathMapBasedMovement extends MapBasedMovement imple
 	@Override
 	public Path getPath() {
 		// Get new state
-		MasterStudentState tmpState = this.state.getNextState((SimClock.getTime()>700 && SimClock.getTime()<900), hostHistory.size() >3);
+		MINodeState tmpState = this.state.getNextState((SimClock.getTime()>700 && SimClock.getTime()<900), hostHistory.size() >3);
 		this.state = tmpState != null ? tmpState : this.state;
 
 		setWaitTime(this.state);
@@ -105,30 +106,7 @@ public class StatefulShortestPathMapBasedMovement extends MapBasedMovement imple
 		return new StatefulShortestPathMapBasedMovement(this);
 	}
 
-	///////////////////////////////////////////////
-	// Library: 147.56,291.82
-	// Enterance: 881.02,216.67
-	// Cateferia: 548.61,393.59
-
-	// Lecture Hall 1: 987.70,343.45
-	// Lecture Hall 2: 707.16,447.99
-	// Lecture Hall 3: 860.44,495.73
-
-	// Seminar Hall 1: 120.56,0.00
-	// Seminar Hall 2: 637.79,511.05
-	// Seminar Hall 3: 481.63,193.80 (Beside computer hall)
-	// Seminar Hall 4: 278.89,157.64
-	// Seminar Hall 5: 149.85,135.00
-
-	// Main Hall 1: 814.56,368.49
-	// Main Hall 2: 453.13,278.73
-	// Main Hall 3: 257.52,223.94
-
-	// Computer Hall: 667.17,208.08
-
-
-
-	private void setWaitTime(MasterStudentState state) {
+	private void setWaitTime(MINodeState state) {
 		if(state != null) {
 			maxWaitTime = state.maxWaitTime;
 			minWaitTime = state.minWaitTime;
