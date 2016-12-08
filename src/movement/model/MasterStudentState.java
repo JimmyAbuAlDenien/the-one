@@ -43,6 +43,21 @@ public class MasterStudentState {
 
     public int maxCapacity = 0;
 
+    public MasterStudentState(State state) {
+        MasterStudentState tmpState = getStateByName(state);
+
+        this.currentState = tmpState.currentState;
+        this.notDoneVisitingProbability = tmpState.notDoneVisitingProbability;
+        this.lunchProbability = tmpState.lunchProbability;
+        this.doneVisitingProbability = tmpState.doneVisitingProbability;
+        this.startProbability = tmpState.startProbability;
+
+        this.coord = tmpState.coord;
+        this.maxCapacity = tmpState.maxCapacity;
+        this.maxWaitTime = tmpState.maxWaitTime;
+        this.minWaitTime = tmpState.minWaitTime;
+    }
+
     public MasterStudentState(State state, int[] startProbability, int[] lunchProbability,
                               int[] doneVisitingProbability, int[] notDoneVisitingProbability, Coord coordinates,
                               int maxCapacity, double minWaitTime, double maxWaitTime ) {
@@ -174,7 +189,7 @@ public class MasterStudentState {
         return null;
     }
 
-    public static MasterStudentState getStateByName(State state) {
+    public MasterStudentState getStateByName(State state) {
         for (MasterStudentState systemState : getSystemStates()) {
             if (systemState.currentState == state) {
                 return systemState;
@@ -195,7 +210,7 @@ public class MasterStudentState {
         Library
     }
 
-    public static LinkedList<MasterStudentState> getSystemStates() {
+    public LinkedList<MasterStudentState> getSystemStates() {
         LinkedList<MasterStudentState> systemStates = new LinkedList<>();
 
         int[] case1 = {6,6,6,4,4,4,4,4,3,3,3,40,0,5,5};

@@ -27,7 +27,7 @@ public class StatefulShortestPathMapBasedMovement extends MapBasedMovement imple
 	/** Points Of Interest handler */
 	private PointsOfInterest pois;
 
-	private MasterStudentState state = MasterStudentState.getStateByName(MasterStudentState.State.Enterance);
+	private MasterStudentState state;
 
 	private List<MasterStudentState.State> hostHistory = new ArrayList<>();
 	//==========================================================================//
@@ -55,10 +55,12 @@ public class StatefulShortestPathMapBasedMovement extends MapBasedMovement imple
 		super(mbm);
 		this.pathFinder = mbm.pathFinder;
 		this.pois = mbm.pois;
+		this.state = new MasterStudentState(MasterStudentState.State.Enterance);
 	}
 
 	@Override
 	public Coord getInitialLocation() {
+
 		List<MapNode> allNodes = getMap().getNodes();
 
 		for (MapNode destination : allNodes) {
