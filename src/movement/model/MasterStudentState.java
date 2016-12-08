@@ -29,6 +29,8 @@ public class MasterStudentState extends MINodeState {
     public MINodeState getNextState(boolean isLunch, boolean isVisited) {
         int[] probs = startProbability;
 
+        System.out.println("isLunch: " + isLunch + " " + "isVisited: " + isLunch);
+
         if(isVisited && isLunch) {
             probs = doneVisitingLunchProbability;
         } else if(isLunch) {
@@ -47,9 +49,11 @@ public class MasterStudentState extends MINodeState {
             sum += probs[i];
 
             if (sum >= index) {
+                System.out.println(this.currentState);
+                System.out.println(getSystemStates().get(probs.length - 1 - i).currentState + " : " + probs[i]);
                 decreaseStateCapacity(this.currentState);
-                increaseStateCapacity(getSystemStates().get(i).currentState);
-                return getSystemStates().get(i);
+                increaseStateCapacity(getSystemStates().get(probs.length - 1 - i).currentState);
+                return getSystemStates().get(probs.length - 1 - i);
             }
         }
 
@@ -158,7 +162,8 @@ public class MasterStudentState extends MINodeState {
 
         int[] case49 = {5,5,5,4,4,4,4,4,17,17,17,0,15,0,0};
         int[] case50 = {6,6,6,4,4,4,4,4,8,8,8,0,15,10,10};
-        int[] case51 = {2,2,2,1,1,1,1,1,7,7,7,0,50,10,10};
+        //int[] case51 = {2,2,2,1,1,1,1,1,7,7,7,0,50,10,10};
+        int[] case51 = {0,0,0,0,0,0,0,0,0,0,0,0,0,100,0,0};
         int[] case52 = {1,1,1,1,1,1,1,1,2,2,2,5,70,8,8};
 
         MINodeState entrance = new MasterStudentState(State.Enterance, case49, case50,case51, case52, new Coord(881.02,216.67), 10000000, 0, 0);

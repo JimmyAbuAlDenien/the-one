@@ -33,6 +33,8 @@ public class BachelorStudentState extends MINodeState {
             probs = doneVisitingProbability;
         }
 
+        System.out.println("isLunch: " + isLunch + " " + "isVisited: " + isLunch);
+        System.out.println(this.currentState);
         probs = removeFullStates(probs);
 
         Random rand = new Random();
@@ -43,9 +45,11 @@ public class BachelorStudentState extends MINodeState {
             sum += probs[i];
 
             if (sum >= index) {
+                System.out.println(this.currentState);
+                System.out.println(getSystemStates().get(probs.length - 1 - i).currentState + " : " + probs[i]);
                 decreaseStateCapacity(this.currentState);
-                increaseStateCapacity(getSystemStates().get(i).currentState);
-                return getSystemStates().get(i);
+                increaseStateCapacity(getSystemStates().get(probs.length - 1 - i).currentState);
+                return getSystemStates().get(probs.length - 1 - i);
             }
         }
 

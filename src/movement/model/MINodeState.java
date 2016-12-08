@@ -5,6 +5,7 @@ import movement.map.MapNode;
 import util.Tuple;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -59,6 +60,7 @@ public class MINodeState {
         this.lunchProbability = tmpState.lunchProbability;
         this.doneVisitingProbability = tmpState.doneVisitingProbability;
         this.startProbability = tmpState.startProbability;
+        this.doneVisitingLunchProbability = tmpState.doneVisitingProbability;
 
         this.coord = tmpState.coord;
         this.maxCapacity = tmpState.maxCapacity;
@@ -117,6 +119,11 @@ public class MINodeState {
     }
 
     protected int[] removeFullStates(int[] probs) {
+
+        if(probs == null) {
+            return new int[]{0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+        }
+
         int[] updatedProbs = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
         LinkedList<MINodeState> allStates = getSystemStates();
 
@@ -128,6 +135,8 @@ public class MINodeState {
             MINodeState stateToCheck = allStates.get(i);
 
             if(getStateCapacity(stateToCheck.currentState) < stateToCheck.maxCapacity) {
+                System.out.println(Arrays.toString(probs));
+                System.out.println(Arrays.toString(updatedProbs));
                 updatedProbs[i] = probs[i];
                 emptyStatesCount ++;
             } else {

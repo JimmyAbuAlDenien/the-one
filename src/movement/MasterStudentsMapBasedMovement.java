@@ -61,17 +61,8 @@ public class MasterStudentsMapBasedMovement extends MapBasedMovement implements
 
 	@Override
 	public Coord getInitialLocation() {
-
-		List<MapNode> allNodes = getMap().getNodes();
-
-		for (MapNode destination : allNodes) {
-			if(destination.getLocation().toString().equals(this.state.coord.toString())){
-				lastMapNode = destination;
-				return destination.getLocation().clone();
-			}
-		}
-
-		return null;
+		lastMapNode = state.getMapNode();
+		return lastMapNode.getLocation().clone();
 	}
 
 	@Override
@@ -97,6 +88,7 @@ public class MasterStudentsMapBasedMovement extends MapBasedMovement implements
 		}
 
 		lastMapNode = nodePath.get(nodePath.size()-1);
+		hostHistory.add(this.state.currentState);
 
 		return p;
 	}

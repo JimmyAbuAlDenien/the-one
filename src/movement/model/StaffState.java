@@ -44,9 +44,11 @@ public class StaffState extends MINodeState {
             sum += probs[i];
 
             if (sum >= index) {
+                System.out.println(this.currentState);
+                System.out.println(getSystemStates().get(probs.length - 1 - i).currentState + " : " + probs[i]);
                 decreaseStateCapacity(this.currentState);
-                increaseStateCapacity(getSystemStates().get(i).currentState);
-                return getSystemStates().get(i);
+                increaseStateCapacity(getSystemStates().get(probs.length - 1 - i).currentState);
+                return getSystemStates().get(probs.length - 1 - i);
             }
         }
 
