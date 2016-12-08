@@ -17,7 +17,8 @@ public class StaffState extends MINodeState {
     public StaffState(State state, int[] startProbability, int[] lunchProbability,
                       int[] doneVisitingProbability, int[] notDoneVisitingProbability, Coord coordinates,
                       int maxCapacity, double minWaitTime, double maxWaitTime) {
-        super(state, startProbability, lunchProbability, doneVisitingProbability,notDoneVisitingProbability,
+        super(state, new int[]{0,0,0,20,20,0,60,0,0,0,0,0,0,0,0}, new int[]{0,0,0,20,20,0,60,0,0,0,0,0,0,0,0},
+                new int[]{0,0,0,20,20,0,60,0,0,0,0,0,0,0,0},new int[]{0,0,0,20,20,0,60,0,0,0,0,0,0,0,0},
                 coordinates,maxCapacity, minWaitTime, maxWaitTime);
     }
 
@@ -57,10 +58,10 @@ public class StaffState extends MINodeState {
     public LinkedList<MINodeState> getSystemStates() {
         LinkedList<MINodeState> systemStates = new LinkedList<>();
 
-        int[] case1 = {6,6,6,4,4,4,4,4,3,3,3,40,0,5,5};
-        int[] case2 = {8,8,8,6,6,6,6,6,5,5,5,10,0,10,10};
-        int[] case3 = {5,5,5,3,3,3,3,3,2,2,2,50,10,3,3};
-        int[] case4 = {5,5,5,3,3,3,3,3,5,5,5,10,15,15,15};
+        int[] case1 = {0,0,0,20,20,0,60,0,0,0,0,0,0,0,0};
+        int[] case2 = {0,0,0,20,20,0,60,0,0,0,0,0,0,0,0};
+        int[] case3 = {0,0,0,20,20,0,60,0,0,0,0,0,0,0,0};
+        int[] case4 = {0,0,0,20,20,0,60,0,0,0,0,0,0,0,0};
 
         MINodeState lectureHall1 = new StaffState(State.LectureHall1, case1, case2,case3, case4, new Coord(987.70,343.45), 200, 500, 500);
         systemStates.add(lectureHall1);

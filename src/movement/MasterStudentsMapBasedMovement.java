@@ -20,8 +20,8 @@ import java.util.List;
  * Map based movement model that uses Dijkstra's algorithm to find shortest
  * paths between two random map nodes and Points Of Interest
  */
-public class StatefulShortestPathMapBasedMovement extends MapBasedMovement implements
-	SwitchableMovement {
+public class MasterStudentsMapBasedMovement extends MapBasedMovement implements
+		SwitchableMovement {
 	/** the Dijkstra shortest path finder */
 	private DijkstraPathFinder pathFinder;
 
@@ -37,7 +37,7 @@ public class StatefulShortestPathMapBasedMovement extends MapBasedMovement imple
 	 * Creates a new movement model based on a Settings object's settings.
 	 * @param settings The Settings object where the settings are read from
 	 */
-	public StatefulShortestPathMapBasedMovement(Settings settings) {
+	public MasterStudentsMapBasedMovement(Settings settings) {
 		super(settings);
 		this.pathFinder = new DijkstraPathFinder(getOkMapNodeTypes());
 		this.pois = new PointsOfInterest(getMap(), getOkMapNodeTypes(),
@@ -52,7 +52,7 @@ public class StatefulShortestPathMapBasedMovement extends MapBasedMovement imple
 	 * @param mbm The ShortestPathMapBasedMovement prototype to base
 	 * the new object to
 	 */
-	protected StatefulShortestPathMapBasedMovement(StatefulShortestPathMapBasedMovement mbm) {
+	protected MasterStudentsMapBasedMovement(MasterStudentsMapBasedMovement mbm) {
 		super(mbm);
 		this.pathFinder = mbm.pathFinder;
 		this.pois = mbm.pois;
@@ -102,8 +102,8 @@ public class StatefulShortestPathMapBasedMovement extends MapBasedMovement imple
 	}
 
 	@Override
-	public StatefulShortestPathMapBasedMovement replicate() {
-		return new StatefulShortestPathMapBasedMovement(this);
+	public MasterStudentsMapBasedMovement replicate() {
+		return new MasterStudentsMapBasedMovement(this);
 	}
 
 	private void setWaitTime(MINodeState state) {

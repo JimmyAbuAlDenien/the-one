@@ -18,27 +18,34 @@ myInterface.transmitRange = 0
 myInterface.transmitSpeed = 0
 
 # Groups
-Scenario.nrofHostGroups = 1
+Scenario.nrofHostGroups = 3
 
-#Group1.groupID = M
-#Group1.nrofHosts = 1
-#Group1.nrofInterfaces = 1
-#Group1.interface1 = myInterface
-#Group1.movementModel = StatefulShortestPathMapBasedMovement
-#Group1.routeFile = data/cluster/students.wkt
-#Group1.routeType = 1
-#Group1.router = PassiveRouter
-#Group1.waitTime = 0, 120
-
-Group1.groupID = B
+Group1.groupID = Master
 Group1.nrofHosts = 250
 Group1.nrofInterfaces = 1
 Group1.interface1 = myInterface
-Group1.movementModel = StatefulShortestPathMapBasedMovement
+Group1.movementModel = MasterStudentsMapBasedMovement
 Group1.routeFile = data/cluster/path.wkt
 Group1.routeType = 1
 Group1.router = PassiveRouter
-#Group2.waitTime = 200, 300
+
+Group2.groupID = Staff
+Group2.nrofHosts = 50
+Group2.nrofInterfaces = 1
+Group2.interface1 = myInterface
+Group2.movementModel = StaffMapBasedMovement
+Group2.routeFile = data/cluster/path.wkt
+Group2.routeType = 1
+Group2.router = PassiveRouter
+
+Group3.groupID = Bachelor
+Group3.nrofHosts = 200
+Group3.nrofInterfaces = 1
+Group3.interface1 = myInterface
+Group3.movementModel = BachelorStudentsMapBasedMovement
+Group3.routeFile = data/cluster/path.wkt
+Group3.routeType = 1
+Group3.router = PassiveRouter
 
 ## Map based movement -movement model specific settings
 MapBasedMovement.nrofMapFiles = 2
