@@ -3,6 +3,7 @@ package movement.model;
 import core.Coord;
 
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -23,14 +24,14 @@ public class StaffState extends MINodeState {
     }
 
     @Override
-    public MINodeState getNextState(boolean isLunch, boolean isVisited) {
+    public MINodeState getNextState(boolean isLunch, List<State> history) {
         int[] probs = startProbability;
 
-        if(isVisited && isLunch) {
+        if(history.size() > 3 && isLunch) {
             probs = doneVisitingLunchProbability;
         } else if(isLunch) {
             probs = lunchProbability;
-        } else if(isVisited) {
+        } else if(history.size() > 3) {
             probs = doneVisitingProbability;
         }
 

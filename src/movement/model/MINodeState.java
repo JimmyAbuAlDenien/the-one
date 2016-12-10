@@ -84,7 +84,7 @@ public class MINodeState {
         this.minWaitTime = minWaitTime;
     }
 
-    public MINodeState getNextState(boolean isLunch, boolean isVisited) {
+    public MINodeState getNextState(boolean isLunch, List<MINodeState.State> history) {
         return null;
     }
 

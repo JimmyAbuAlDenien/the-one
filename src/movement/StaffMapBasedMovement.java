@@ -69,7 +69,7 @@ public class StaffMapBasedMovement extends MapBasedMovement implements
 	@Override
 	public Path getPath() {
 		// Get new state
-		MINodeState tmpState = this.state.getNextState((SimClock.getTime()>700 && SimClock.getTime()<900), hostHistory.size() >3);
+		MINodeState tmpState = this.state.getNextState((SimClock.getTime()>700 && SimClock.getTime()<900), hostHistory);
 		this.state = tmpState != null ? tmpState : this.state;
 
 		setWaitTime(this.state);
