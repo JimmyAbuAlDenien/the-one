@@ -1,12 +1,9 @@
 package report;
 
-import core.Coord;
-import core.DTNHost;
-import core.Settings;
-import core.SettingsError;
-import core.SimScenario;
+import core.*;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -20,7 +17,7 @@ import java.util.List;
  *
  * @author teemuk
  */
-public class NodeDensityReport
+public class NodeDensityReportGraphBased
 extends SamplingReport {
 	//========================================================================//
 	// Settings
@@ -40,17 +37,40 @@ extends SamplingReport {
 	public static final String ONLY_AVERAGE_SETTING = "onlyAverage";
 
 	/** Default number of divisions along the x-axis ({@value}). */
-	public static final int DEFAULT_X_COUNT = 10;
+	public static final int DEFAULT_X_COUNT = 100;
 	/** Default number of divisions along the y-axis ({@value}). */
-	public static final int DEFAULT_Y_COUNT = 10;
+	public static final int DEFAULT_Y_COUNT = 100;
 	/** Default value for outputting gnuplot instead of raw data ({@value}). */
-	public static final boolean DEFAULT_GNUPLOT = false;
+	public static final boolean DEFAULT_GNUPLOT = true;
 	/** Default value for gnuplot terminal ({@value}). */
 	public static final String DEFAULT_GNUPLOT_TERMINAL =
 			"png size 910,768";
 	public static final String DEFAULT_GNUPLOT_FILE_EXTENSION = "png";
 	/** Default value for outputting only the average density ({@value}). */
 	public static final boolean DEFAULT_ONLY_AVERAGE = false;
+
+	///////////////////////////////////////////////
+	// these are the defined coordinates of our defined POIs
+	// we only care about these here
+	public static final Coord Library = new Coord(987.70,343.45);
+	public static final Coord Entrance = new Coord(881.02,216.67);
+	public static final Coord Cateferia = new Coord(548.61,393.59);
+	public static final Coord LectureHall1 = new Coord(987.70,343.45);
+	public static final Coord LectureHall2 = new Coord(707.16,447.99);
+	public static final Coord LectureHall3 = new Coord(860.44,495.73);
+	public static final Coord SeminarHall1 = new Coord(120.56,0.00);
+	public static final Coord SeminarHall2 = new Coord(637.79,511.05);
+	public static final Coord SeminarHall3 = new Coord(481.63,193.80);
+	public static final Coord SeminarHall4 = new Coord(278.89,157.64);
+	public static final Coord SeminarHall5 = new Coord(149.85,135.00);
+	public static final Coord MainHall1 = new Coord(814.56,368.49);
+	public static final Coord MainHall2 = new Coord(453.13,278.73);
+	public static final Coord MainHall3 = new Coord(257.52,223.94);
+	public static final Coord ComputerHall = new Coord(667.17,208.08);
+
+
+
+
 	//========================================================================//
 
 
@@ -69,13 +89,14 @@ extends SamplingReport {
 	private final boolean onlyAverage;
 	private final String runName;
 	private final List<int[][]> samples;
+	private final Coord[] POIs;
 	//========================================================================//
 
 
 	//========================================================================//
 	// Constructor
 	//========================================================================//
-	public NodeDensityReport() {
+	public NodeDensityReportGraphBased() {
 		super();
 
 		final Settings settings = super.getSettings();
@@ -113,9 +134,66 @@ extends SamplingReport {
 
 		this.samples = new ArrayList<int[][]>(sampleCount);
 
+		final Coord Library = new Coord(987.70,343.45);
+		final Coord Entrance = new Coord(881.02,216.67);
+		final Coord Cateferia = new Coord(548.61,393.59);
+		final Coord LectureHall1 = new Coord(987.70,343.45);
+		final Coord LectureHall2 = new Coord(707.16,447.99);
+		final Coord LectureHall3 = new Coord(860.44,495.73);
+		final Coord SeminarHall1 = new Coord(120.56,0.00);
+		final Coord SeminarHall2 = new Coord(637.79,511.05);
+		final Coord SeminarHall3 = new Coord(481.63,193.80);
+		final Coord SeminarHall4 = new Coord(278.89,157.64);
+		final Coord SeminarHall5 = new Coord(149.85,135.00);
+		final Coord MainHall1 = new Coord(814.56,368.49);
+		final Coord MainHall2 = new Coord(453.13,278.73);
+		final Coord MainHall3 = new Coord(257.52,223.94);
+		final Coord ComputerHall = new Coord(667.17,208.08);
+
+		POIs = new Coord[15];
+		POIs[0] = Library;
+		POIs[1] = Entrance;
+		POIs[2] = Cateferia;
+		POIs[3] = LectureHall1;
+		POIs[4] = LectureHall2;
+		POIs[5] = LectureHall3;
+		POIs[6] = SeminarHall1;
+		POIs[7] = SeminarHall2;
+		POIs[8] = SeminarHall3;
+		POIs[9] = SeminarHall4;
+		POIs[10] = SeminarHall5;
+		POIs[11] = MainHall1;
+		POIs[12] = MainHall2;
+		POIs[13] = MainHall3;
+		POIs[14] = ComputerHall;
+
 		this.runName = scenario.getName();
 	}
 	//========================================================================//
+
+	protected boolean isInPOIs(Coord position) {
+		for(int i=0;i<POIs.length-1;i++) {
+			if (position.BoolCompareTo(POIs[i])) {
+				return true;
+			}
+		}
+		return false;
+	}
+	protected boolean isInPOIs(int xBucket, int yBucket) {
+		for(int i=0;i<POIs.length-1;i++) {
+			if (returnXBucket(POIs[i])==xBucket && returnYBucket(POIs[i])==yBucket ) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	protected int returnXBucket(Coord location) {
+		return (int) (location.getX() / this.divisionWidth);
+	}
+	protected int returnYBucket(Coord location) {
+		return (int) (location.getY() / this.divisionWidth);
+	}
 
 
 	//========================================================================//
@@ -128,9 +206,14 @@ extends SamplingReport {
 
 		for (final DTNHost host : hosts) {
 			final Coord location = host.getLocation();
-			final int xBucket = (int) (location.getX() / this.divisionWidth);
-			final int yBucket = (int) (location.getY() / this.divisionHeight);
-			sample[xBucket][yBucket]++;
+
+//			if(isInPOIs(host.getLocation())) {
+				final int xBucket = (int) (location.getX() / this.divisionWidth);
+				final int yBucket = (int) (location.getY() / this.divisionHeight);
+				if(isInPOIs(xBucket,yBucket)) {
+					sample[xBucket][yBucket]++;
+				}
+//			}
 		}
 
 		this.samples.add(sample);

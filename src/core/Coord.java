@@ -153,4 +153,17 @@ public class Coord implements Cloneable, Comparable<Coord> {
 			return 0;
 		}
 	}
+	public boolean BoolCompareTo(Coord other) {
+		if (this.y == other.y) {
+			if (this.x == other.x) {
+				return true;
+			}
+			else {
+				return false;
+			}
+		}
+		else {
+			return false;
+		}
+	}
 }
