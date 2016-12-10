@@ -57,7 +57,7 @@ public class BachelorStudentsMapBasedMovement extends MapBasedMovement implement
 		super(mbm);
 		this.pathFinder = mbm.pathFinder;
 		this.pois = mbm.pois;
-		this.state = new BachelorStudentState(MINodeState.State.Enterance);
+		this.state = new BachelorStudentState(MINodeState.State.Entrance);
 	}
 
 	@Override

@@ -57,7 +57,7 @@ public class StaffMapBasedMovement extends MapBasedMovement implements
 		super(mbm);
 		this.pathFinder = mbm.pathFinder;
 		this.pois = mbm.pois;
-		this.state = new StaffState(MINodeState.State.Enterance);
+		this.state = new StaffState(MINodeState.State.Entrance);
 	}
 
 	@Override

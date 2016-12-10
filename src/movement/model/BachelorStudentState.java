@@ -34,27 +34,11 @@ public class BachelorStudentState extends MINodeState {
             probs = doneVisitingProbability;
         }
 
-        System.out.println("isLunch: " + isLunch + " " + "isVisited: " + isLunch);
+        System.out.println("isLunch: " + isLunch + " " + "isVisited: " + history.size());
         System.out.println(this.currentState);
         probs = removeFullStates(probs);
 
-        Random rand = new Random();
-        int index = rand.nextInt(100);
-        int sum = 0;
-
-        for (int i=0; i<probs.length; i++) {
-            sum += probs[i];
-
-            if (sum >= index) {
-                System.out.println(this.currentState);
-                System.out.println(getSystemStates().get(probs.length - 1 - i).currentState + " : " + probs[i]);
-                decreaseStateCapacity(this.currentState);
-                increaseStateCapacity(getSystemStates().get(probs.length - 1 - i).currentState);
-                return getSystemStates().get(probs.length - 1 - i);
-            }
-        }
-
-        return null;
+        return getRandomState(probs, getSystemStates());
     }
 
     // TODO: set different probs for bachelors (ex: less probs for seminar rooms and more in lecture halls)
@@ -160,10 +144,11 @@ public class BachelorStudentState extends MINodeState {
 
         int[] case49 = {5,5,5,4,4,4,4,4,17,17,17,0,15,0,0};
         int[] case50 = {6,6,6,4,4,4,4,4,8,8,8,0,15,10,10};
-        int[] case51 = {2,2,2,1,1,1,1,1,7,7,7,0,50,10,10};
+        //int[] case51 = {2,2,2,1,1,1,1,1,7,7,7,0,50,10,10};
+        int[] case51 = {0,0,0,0,0,0,0,0,0,0,0,0,100,0,0,0};
         int[] case52 = {1,1,1,1,1,1,1,1,2,2,2,5,70,8,8};
 
-        MINodeState entrance = new BachelorStudentState(State.Enterance, case49, case50,case51, case52, new Coord(881.02,216.67), 10000000, 0, 0);
+        MINodeState entrance = new BachelorStudentState(State.Entrance, case49, case50,case51, case52, new Coord(881.02,216.67), 10000000, 0, 0);
         systemStates.add(entrance);
 
         int[] case53 = {5,5,5,3,3,3,3,3,10,10,10,40,0,0,0};

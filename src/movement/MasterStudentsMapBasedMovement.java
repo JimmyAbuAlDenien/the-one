@@ -56,7 +56,7 @@ public class MasterStudentsMapBasedMovement extends MapBasedMovement implements
 		super(mbm);
 		this.pathFinder = mbm.pathFinder;
 		this.pois = mbm.pois;
-		this.state = new MasterStudentState(MINodeState.State.Enterance);
+		this.state = new MasterStudentState(MINodeState.State.Entrance);
 	}
 
 	@Override

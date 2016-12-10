@@ -4,17 +4,14 @@ import core.Coord;
 import movement.map.MapNode;
 import util.Tuple;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by jimmy on 12/8/16.
  */
 ///////////////////////////////////////////////
 // Library: 147.56,291.82
-// Enterance: 881.02,216.67
+// Entrance: 881.02,216.67
 // Cateferia: 548.61,393.59
 
 // Lecture Hall 1: 987.70,343.45
@@ -135,8 +132,8 @@ public class MINodeState {
             MINodeState stateToCheck = allStates.get(i);
 
             if(getStateCapacity(stateToCheck.currentState) < stateToCheck.maxCapacity) {
-                System.out.println(Arrays.toString(probs));
-                System.out.println(Arrays.toString(updatedProbs));
+//                System.out.println(Arrays.toString(probs));
+//                System.out.println(Arrays.toString(updatedProbs));
                 updatedProbs[i] = probs[i];
                 emptyStatesCount ++;
             } else {
@@ -194,13 +191,35 @@ public class MINodeState {
         return null;
     }
 
+    protected MINodeState getRandomState(int[] probs, LinkedList<MINodeState> states) {
+        Random rand = new Random();
+        int index = rand.nextInt(99) + 1;
+        int sum = 0;
+
+        for (int i=0; i<probs.length; i++) {
+            sum += probs[i];
+
+            if (sum >= index) {
+                System.out.println(this.currentState);
+                System.out.println(states.get(i).currentState + " : " + probs[i]);
+
+                decreaseStateCapacity(this.currentState);
+                increaseStateCapacity(states.get(i).currentState);
+
+                return states.get(i);
+            }
+        }
+
+        return null;
+    }
+
     public static enum State
     {
         LectureHall1, LectureHall2, LectureHall3,
         SeminarHall1, SeminarHall2, SeminarHall3, SeminarHall4, SeminarHall5,
         MainHall1, MainHall2, MainHall3,
         Mensa,
-        Enterance,
+        Entrance,
         ComputerHall,
         Library
     }
