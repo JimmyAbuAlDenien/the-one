@@ -9,7 +9,7 @@ Scenario.name = MapRouteMovement
 Scenario.endTime = 6000
 Scenario.updateInterval = 0.1
 Scenario.simulateConnections = false
-MovementModel.worldSize = 10000,10000
+MovementModel.worldSize = 1000,1000
 Events.nrof = 0
 
 # Communication Interface
@@ -54,7 +54,17 @@ MapBasedMovement.mapFile2 = data/cluster/origin1.wkt
 #MapBasedMovement.mapFile3 = data/cluster/bachelor.wkt
 
 # Reports
-Report.nrofReports = 1
+Report.nrofReports = 3
 Report.report1 = FlightLengthReport
-
+Report.report2 = NodeDensityReport
+Report.report3 = NodeDensityReportGraphBased
 Report.reportDir = reports
+
+NodeDensityReport.sampleInterval = 100
+NodeDensityReport.outputGnuplot = true
+NodeDensityReport.xCount = 100
+NodeDensityReport.yCount = 100
+NodeDensityReport.onlyAverage = false
+
+NodeDensityReportGraphBased.sampleInterval = 100
+NodeDensityReportGraphBased.onlyAverage = false
