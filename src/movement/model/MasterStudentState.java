@@ -26,7 +26,7 @@ public class MasterStudentState extends MINodeState {
     public MINodeState getNextState(boolean isLunch, List<MINodeState.State> history) {
         int[] probs = startProbability;
 
-        System.out.println("isLunch: " + isLunch + " " + "isVisited: " + isLunch);
+//        System.out.println("isLunch: " + isLunch + " " + "isVisited: " + isLunch);
 
         if(history.size() > 3 && isLunch) {
             probs = doneVisitingLunchProbability;

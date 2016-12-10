@@ -200,8 +200,8 @@ public class MINodeState {
             sum += probs[i];
 
             if (sum >= index) {
-                System.out.println(this.currentState);
-                System.out.println(states.get(i).currentState + " : " + probs[i]);
+//                System.out.println(this.currentState);
+//                System.out.println(states.get(i).currentState + " : " + probs[i]);
 
                 decreaseStateCapacity(this.currentState);
                 increaseStateCapacity(states.get(i).currentState);

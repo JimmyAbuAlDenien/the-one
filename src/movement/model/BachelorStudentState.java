@@ -34,8 +34,8 @@ public class BachelorStudentState extends MINodeState {
             probs = doneVisitingProbability;
         }
 
-        System.out.println("isLunch: " + isLunch + " " + "isVisited: " + history.size());
-        System.out.println(this.currentState);
+//        System.out.println("isLunch: " + isLunch + " " + "isVisited: " + history.size());
+//        System.out.println(this.currentState);
         probs = removeFullStates(probs);
 
         return getRandomState(probs, getSystemStates());
