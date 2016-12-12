@@ -1,5 +1,10 @@
 # Settings for map route based movement in a triangle.
 
+GUI.UnderlayImage.fileName = data/cluster/map.png
+GUI.UnderlayImage.offset = 10,-200
+GUI.UnderlayImage.scale = 1
+GUI.UnderlayImage.rotate = 0
+
 Scenario.name = MapRouteMovement
 Scenario.endTime = 6000
 Scenario.updateInterval = 0.1
@@ -13,24 +18,53 @@ myInterface.transmitRange = 0
 myInterface.transmitSpeed = 0
 
 # Groups
-Scenario.nrofHostGroups = 1
+Scenario.nrofHostGroups = 3
 
-Group1.groupID = x
-Group1.nrofHosts = 1
+Group1.groupID = Master
+Group1.nrofHosts = 250
 Group1.nrofInterfaces = 1
 Group1.interface1 = myInterface
-Group1.movementModel = MapRouteMovement
-Group1.routeFile = data/cluster/ferryroute.wkt
+Group1.movementModel = MasterStudentsMapBasedMovement
+Group1.routeFile = data/cluster/path.wkt
 Group1.routeType = 1
 Group1.router = PassiveRouter
 
+Group2.groupID = Staff
+Group2.nrofHosts = 50
+Group2.nrofInterfaces = 1
+Group2.interface1 = myInterface
+Group2.movementModel = StaffMapBasedMovement
+Group2.routeFile = data/cluster/path.wkt
+Group2.routeType = 1
+Group2.router = PassiveRouter
+
+Group3.groupID = Bachelor
+Group3.nrofHosts = 200
+Group3.nrofInterfaces = 1
+Group3.interface1 = myInterface
+Group3.movementModel = BachelorStudentsMapBasedMovement
+Group3.routeFile = data/cluster/path.wkt
+Group3.routeType = 1
+Group3.router = PassiveRouter
+
 ## Map based movement -movement model specific settings
 MapBasedMovement.nrofMapFiles = 2
-MapBasedMovement.mapFile1 = data/cluster/ferryroute.wkt
-MapBasedMovement.mapFile2 = data/cluster/origin.wkt
+MapBasedMovement.mapFile1 = data/cluster/path.wkt
+MapBasedMovement.mapFile2 = data/cluster/origin1.wkt
+#MapBasedMovement.mapFile3 = data/cluster/bachelor.wkt
 
 # Reports
-Report.nrofReports = 1
+Report.nrofReports = 3
 Report.report1 = FlightLengthReport
-
+Report.report2 = NodeDensityReport
+Report.report3 = NodeDensityReportGraphBased
 Report.reportDir = reports
+
+NodeDensityReport.sampleInterval = 100
+NodeDensityReport.outputGnuplot = true
+NodeDensityReport.xCount = 100
+NodeDensityReport.yCount = 100
+NodeDensityReport.onlyAverage = false
+
+NodeDensityReportGraphBased.sampleInterval = 100
+NodeDensityReportGraphBased.onlyAverage = false
