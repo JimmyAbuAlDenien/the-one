@@ -20,9 +20,6 @@ public class MIGroupMapBasedMovement extends MapBasedMovement implements Switcha
     /** the Dijkstra shortest path finder */
     protected DijkstraPathFinder pathFinder;
 
-    /** Points Of Interest handler */
-    protected PointsOfInterest pois;
-
     protected MINodeState state;
 
     protected List<MINodeState.State> hostHistory = new ArrayList<>();
@@ -35,8 +32,6 @@ public class MIGroupMapBasedMovement extends MapBasedMovement implements Switcha
     public MIGroupMapBasedMovement(Settings settings) {
         super(settings);
         this.pathFinder = new DijkstraPathFinder(getOkMapNodeTypes());
-        this.pois = new PointsOfInterest(getMap(), getOkMapNodeTypes(),
-                settings, rng);
 
         // Set all nodes
         MINodeState.allNodes = getMap().getNodes();
@@ -50,7 +45,6 @@ public class MIGroupMapBasedMovement extends MapBasedMovement implements Switcha
     protected MIGroupMapBasedMovement(MIGroupMapBasedMovement mbm) {
         super(mbm);
         this.pathFinder = mbm.pathFinder;
-        this.pois = mbm.pois;
     }
 
     @Override
